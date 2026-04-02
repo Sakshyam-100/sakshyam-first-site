@@ -67,16 +67,16 @@
             clip-path: polygon(0% 100%, 10% 40%, 25% 75%, 45% 10%, 65% 65%, 85% 25%, 100% 100%);
             z-index: -1;
         }
-
-        /* Image Hover */
-        .img-card:hover { transform: scale(1.05); transition: 0.3s; border-color: #dc143c !important; }
         .floating-flag {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    font-size: 40px;
     z-index: 1000;
     animation: bounce 2s infinite;
+}
+
+.floating-flag img {
+    filter: drop-shadow(2px 4px 6px black); /* This makes the flag pop! */
 }
 
 @keyframes bounce {
@@ -138,7 +138,9 @@
         <button class="btn" style="background: #777; color: white;" onclick="resetGame()">Reset</button>
         <p id="gameFeedback" style="font-weight: bold; font-size: 20px; color: #003893;">Start guessing...</p>
     </div>
-    <div class="floating-flag">🇳🇵</div>
+<div class="floating-flag">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50" alt="Nepal Flag">
+</div>
 
     <div class="section-box" style="background: #003893; border-color: #ffcc00;">
         <h2 style="color: #ffcc00;">My School</h2>
