@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sakshyam Ghimire - Official Site</title>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- GLOBAL STYLE & ANIME BG --- */
         body {
-            background-color: #dc143c; /* Crimson Red */
+            /* High-quality Anime Background with Dark Overlay for readability */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.alphacoders.com/941/941011.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: white;
             text-align: center;
-            font-family: 'Kalam', 'Segoe UI', Tahoma, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            transition: 0.5s;
+            text-shadow: 2px 2px 4px #000000;
         }
 
-        /* The Clock Styling */
+        /* --- THE CLOCK --- */
         #myClock {
             color: #ffcc00; 
-            background: #003893; 
+            background: rgba(0, 56, 147, 0.8); 
             display: inline-block;
             padding: 15px 30px;
-            border: 5px solid white;
+            border: 4px solid white;
             border-radius: 50px;
             font-family: monospace;
-            font-size: 60px;
+            font-size: 50px;
             margin-top: 20px;
-            box-shadow: 0px 10px 20px rgba(0,0,0,0.4);
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.6);
         }
 
+        /* --- BUTTONS --- */
         .btn {
             background: white;
             color: #dc143c;
@@ -41,87 +49,83 @@
             margin: 10px;
             font-family: 'Kalam', cursive;
             box-shadow: 2px 4px 0px #003893;
+            transition: 0.3s;
         }
-
-        .btn:hover { background: #eee; }
+        .btn:hover { background: #eee; transform: scale(1.05); }
         .btn:active { transform: translateY(3px); box-shadow: none; }
 
-        /* Section Boxes */
+        /* --- SECTION BOXES --- */
         .section-box {
-            background: rgba(255,255,255,0.1);
+            background: rgba(0, 0, 0, 0.7);
             padding: 30px;
             margin: 40px auto;
             width: 85%;
             border-radius: 20px;
-            border: 2px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px); /* Modern blur effect */
         }
 
-        /* Mountain Footer */
+        /* --- ANIME CARDS --- */
+        .anime-card {
+            transition: transform 0.4s ease;
+            width: 180px;
+            margin: 10px;
+        }
+        .anime-card:hover {
+            transform: scale(1.1) rotate(3deg);
+        }
+        .anime-card img {
+            width: 100%;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* --- FLOATING FLAG --- */
+        .floating-flag {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- MOUNTAIN FOOTER --- */
         .mountains {
             background-color: white;
-            height: 120px;
+            height: 100px;
             width: 100%;
-            position: fixed;
+            position: relative;
             bottom: 0;
-            left: 0;
             clip-path: polygon(0% 100%, 10% 40%, 25% 75%, 45% 10%, 65% 65%, 85% 25%, 100% 100%);
-            z-index: -1;
+            opacity: 0.8;
         }
-        .floating-flag {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    animation: bounce 2s infinite;
-}
-
-.floating-flag img {
-    filter: drop-shadow(2px 4px 6px black); /* This makes the flag pop! */
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-body {
-    /* This is a high-speed direct link that won't turn white! */
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('https://raw.githubusercontent.com/SakshyamGhimire/nepal-vibes/main/anime-bg.jpg') no-repeat center center fixed;
-    
-    /* Backup link if you haven't uploaded the file yet: */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                      url('https://images.alphacoders.com/941/941011.jpg');
-                      
-    background-size: cover;
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 20px;
-}
     </style>
 </head>
 <body>
 
     <audio id="vipSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
 
-    <div style="margin-top: 30px;">
-        <div style="font-size: 30px; color: #ffcc00;">* NEPAL *</div>
+    <div style="padding-top: 50px;">
+        <div style="font-size: 30px; color: #ffcc00; font-family: 'Kalam', cursive;">* NEPAL *</div>
         <h1 id="greetText" style="font-size: 55px; margin: 10px;">Namaste!</h1>
         <p id="dayQuote" style="font-size: 22px; font-style: italic; color: #ffcc00;">"Sanchai hunuhunxa?"</p>
         <h2 id="myClock">00:00:00</h2>
     </div>
 
-    <p style="font-size: 25px;">I'm <b>Sakshyam Ghimire</b> (15) from Nepal.</p>
-    <img src="https://picsum.photos/180" style="border-radius: 50%; border: 8px solid white;">
+    <p style="font-size: 25px; margin-top: 20px;">I'm <b>Sakshyam Ghimire</b> (15) from Nepal.</p>
+    <img src="https://picsum.photos/180" style="border-radius: 50%; border: 6px solid #ffcc00; box-shadow: 0 0 20px rgba(255,204,0,0.5);">
 
     <div class="section-box">
-        <h2 style="color: #ffcc00;">Jadu Ghar (Magic Section)</h2>
+        <h2 style="color: #ffcc00; font-family: 'Kalam';">Jadu Ghar (Magic Section)</h2>
         <button class="btn" onclick="let n = prompt('Name?'); if(n) alert('Namaste ' + n.toUpperCase() + '!');">Sodha Malai</button>
         <button class="btn" onclick="showVipAlert()">Show VIPs</button>
         <button class="btn" style="background: black; color: white;" onclick="bhootPrank()">DON'T CLICK</button>
         
-        <ul id="VIP" style="display:none; font-size: 25px; list-style: none; padding: 0;">
+        <ul id="VIP" style="display:none; font-size: 25px; list-style: none; padding: 0; color: #ffcc00;">
             <li>> sakshyam</li>
             <li>> soyesh</li>
             <li>> motka</li>
@@ -132,122 +136,100 @@ body {
         </ul>
     </div>
 
-    <div class="section-box" style="background: white; color: #333;">
-        <h2 style="color: #dc143c;">Mero Nepal Gallery</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-            <div class="img-card" style="width: 220px; border: 4px solid #003893; border-radius: 10px; overflow: hidden;">
-                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300" style="width: 100%; height: 150px; object-fit: cover;">
-                <p style="font-weight: bold;">Mt. Everest</p>
+    <div class="section-box">
+        <h2 style="color: #ff4500; text-shadow: 2px 2px 10px #ff4500;">🔥 MY ANIME SQUAD 🔥</h2>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <div class="anime-card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png" style="border: 3px solid #ff4500;">
+                <p>Naruto</p>
             </div>
-            <div class="img-card" style="width: 220px; border: 4px solid #003893; border-radius: 10px; overflow: hidden;">
-                <img src="https://images.unsplash.com/photo-1582650839019-746eb97ec394?w=300" style="width: 100%; height: 150px; object-fit: cover;">
-                <p style="font-weight: bold;">Phewa Lake</p>
+            <div class="anime-card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/af/Son_Goku_Dragon_Ball.png" style="border: 3px solid #00acee;">
+                <p>Goku</p>
             </div>
         </div>
     </div>
 
-    <div class="section-box" style="background: white; color: #dc143c; border: 4px solid #003893;">
-        <h2>Guess the Number (1-20)</h2>
-        <input type="number" id="userGuess" style="padding: 10px; width: 60px; font-size: 20px; border: 2px solid #dc143c; border-radius: 10px; text-align: center;">
+    <div class="section-box">
+        <h2 style="color: #ffcc00;">Mero Nepal Gallery</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <div style="width: 200px; border: 2px solid white; border-radius: 10px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300" style="width: 100%; height: 120px; object-fit: cover;">
+                <p>Mt. Everest</p>
+            </div>
+            <div style="width: 200px; border: 2px solid white; border-radius: 10px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1582650839019-746eb97ec394?w=300" style="width: 100%; height: 120px; object-fit: cover;">
+                <p>Phewa Lake</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-box" style="background: white; color: #333;">
+        <h2 style="color: #dc143c;">Guess the Number (1-20)</h2>
+        <input type="number" id="userGuess" style="padding: 10px; width: 60px; font-size: 20px; border: 2px solid #dc143c; border-radius: 10px;">
         <br><br>
         <button class="btn" style="background: #003893; color: white;" onclick="checkGuess()">Check</button>
         <button class="btn" style="background: #777; color: white;" onclick="resetGame()">Reset</button>
-        <p id="gameFeedback" style="font-weight: bold; font-size: 20px; color: #003893;">Start guessing...</p>
+        <p id="gameFeedback" style="font-weight: bold; color: #003893;">Start guessing...</p>
     </div>
-<div class="floating-flag">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50" alt="Nepal Flag">
-</div>
 
-    <div class="section-box" style="background: #003893; border-color: #ffcc00;">
+    <div class="section-box" style="border: 2px solid #ffcc00;">
         <h2 style="color: #ffcc00;">My School</h2>
-        <p style="font-size: 20px;">Vidya Niketan Secondary School</p>
+        <p>Vidya Niketan Secondary School</p>
         <a href="http://vidya-niketan.edu.np" target="_blank">
-            <button class="btn" style="box-shadow: none;">Visit School Website</button>
+            <button class="btn">Visit Website</button>
         </a>
     </div>
-    section style="text-align:uto-uzuma center; margin-top: 50px; padding: 20px;">
-    <h2 style="color: #ff4500; font-size: 28px; text-shadow: 2px 2px 10px #000;">🔥 MY ANIME SQUAD 🔥</h2>
-    
-    <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 20px;">
-        
-        <div class="anime-card">
-            <img src="https://api.otakustore.gr/wp-content/uploads/2023/04/narki-
+
+    <div class="section-box" style="background: #1a1a1a;">
         <h2 style="color: #ffcc00;">Contact Sakshyam</h2>
         <p>Instagram: <b>@sakshyam.san</b> | Phone: <b>9824955188</b></p>
-        <form id="contactForm">
-            <input type="text" id="userName" placeholder="Your Name" style="padding: 10px; width: 80%; border-radius: 5px; margin-bottom: 10px;"><br>
-            <textarea id="userMsg" placeholder="Your Message..." style="padding: 10px; width: 80%; height: 60px; border-radius: 5px; margin-bottom: 10px;"></textarea><br>
-            <button type="button" class="btn" onclick="submitForm()">Submit Form</button>
-        </form>
+        <button class="btn" onclick="contactMe()" style="background: #E1306C; color: white;">Get on VIP List 👑</button>
+    </div>
+
+    <div class="floating-flag">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50" alt="Nepal Flag">
     </div>
 
     <div class="mountains"></div>
 
     <script>
-        // --- LOGIC 1: Clock & Greeting ---
         function updateAll() {
             let now = new Date();
             document.getElementById('myClock').innerHTML = now.toLocaleTimeString();
-
             let hour = now.getHours();
             let greet = document.getElementById('greetText');
-            let quote = document.getElementById('dayQuote');
-            if (hour < 12) { greet.innerHTML = "Subha Prabhat!"; quote.innerHTML = "Good Morning, Sakshyam!"; }
-            else if (hour < 18) { greet.innerHTML = "Subha Din!"; quote.innerHTML = "Good Afternoon, Sakshyam!"; }
-            else { greet.innerHTML = "Subha Ratri!"; quote.innerHTML = "Good Night, Sakshyam!"; }
+            if (hour < 12) greet.innerHTML = "Subha Prabhat!";
+            else if (hour < 18) greet.innerHTML = "Subha Din!";
+            else greet.innerHTML = "Subha Ratri!";
         }
         setInterval(updateAll, 1000);
         updateAll();
 
-        // --- LOGIC 2: Game ---
         let secret = Math.floor(Math.random() * 20) + 1;
         function checkGuess() {
             let g = document.getElementById('userGuess').value;
             let f = document.getElementById('gameFeedback');
             if (g == secret) { f.innerHTML = "JADU! You win!"; f.style.color = "green"; document.getElementById('vipSound').play(); }
-            else if (g > secret) { f.innerHTML = "Too High! Lower... ??"; f.style.color = "red"; }
-            else { f.innerHTML = "Too Low! Higher... ??"; f.style.color = "red"; }
+            else if (g > secret) { f.innerHTML = "Too High!"; f.style.color = "red"; }
+            else { f.innerHTML = "Too Low!"; f.style.color = "red"; }
         }
         function resetGame() { secret = Math.floor(Math.random() * 20) + 1; document.getElementById('gameFeedback').innerHTML = "Reset! Try again."; }
 
-        // --- LOGIC 3: Prank ---
+        function showVipAlert() {
+            document.getElementById('vipSound').play();
+            document.getElementById('VIP').style.display = 'block';
+            alert("DM me on Instagram to get your name here, bruhh!");
+        }
+
         function bhootPrank() {
             document.getElementById('vipSound').play();
-            document.body.style.transform = "translateX(10px)";
-            setTimeout(() => { document.body.style.transform = "translateX(0px)"; alert("BOO! Sakshyam's Ghost!"); }, 100);
+            alert("BOO! Sakshyam's Ghost!");
         }
 
-        // --- LOGIC 4: Form ---
-        function submitForm() {
-            let n = document.getElementById('userName').value;
-            if(n) { alert("Namaste " + n + "! Sakshyam will see your message!"); document.getElementById('contactForm').reset(); }
+        function contactMe() {
+            alert("DM me on Instagram: @sakshyam.san\nOr call: 9824955188");
         }
-function showVipAlert() {
-    // 1. Play the sound
-    document.getElementById('vipSound').play();
-    
-    // 2. Show the VIP list on the screen
-    document.getElementById('VIP').style.display = 'block';
-    
-    // 3. The Special Message
-    alert("Yo! Want your name on this VIP list? \n\nJust contact me on Instagram: @sakshyam.san and I'll add you, bruhh!");
-}
     </script>
-    <div style="background: #1a1a1a; color: white; padding: 20px; border-radius: 10px; margin-top: 20px; text-align: center;">
-    <h3>📞 Contact the Creator</h3>
-    <p>Name: <b>Sakshyam Ghimire</b></p>
-    <p>School: <a href="http://vidya-niketan.edu.np" style="color: #00acee;">Vidya Niketan</a></p>
-    <p>Gmail: sakshyamghimire525@gmail.com</p>
-    
-    <button onclick="contactMe()" style="padding: 10px; background: #E1306C; color: white; border: none; border-radius: 5px; cursor: pointer;">
-        Get on the VIP List 👑
-    </button>
-</div>
-
-<script>
-function contactMe() {
-    alert("To join the VIP list, DM me on Instagram: @sakshyam.san\nOr call: 9824955188");
-}
-</script>
 </body>
 </html>
