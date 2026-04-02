@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sakshyam Ghimire - Official Site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #dc143c; /* Crimson Red */
+            color: white;
+            text-align: center;
+            font-family: 'Kalam', 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+
+        /* The Clock Styling */
+        #myClock {
+            color: #ffcc00; 
+            background: #003893; 
+            display: inline-block;
+            padding: 15px 30px;
+            border: 5px solid white;
+            border-radius: 50px;
+            font-family: monospace;
+            font-size: 60px;
+            margin-top: 20px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn {
+            background: white;
+            color: #dc143c;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 10px;
+            font-family: 'Kalam', cursive;
+            box-shadow: 2px 4px 0px #003893;
+        }
+
+        .btn:hover { background: #eee; }
+        .btn:active { transform: translateY(3px); box-shadow: none; }
+
+        /* Section Boxes */
+        .section-box {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            margin: 40px auto;
+            width: 85%;
+            border-radius: 20px;
+            border: 2px solid white;
+        }
+
+        /* Mountain Footer */
+        .mountains {
+            background-color: white;
+            height: 120px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            clip-path: polygon(0% 100%, 10% 40%, 25% 75%, 45% 10%, 65% 65%, 85% 25%, 100% 100%);
+            z-index: -1;
+        }
+
+        /* Image Hover */
+        .img-card:hover { transform: scale(1.05); transition: 0.3s; border-color: #dc143c !important; }
+    </style>
+</head>
+<body>
+
+    <audio id="vipSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+
+    <div style="margin-top: 30px;">
+        <div style="font-size: 30px; color: #ffcc00;">* NEPAL *</div>
+        <h1 id="greetText" style="font-size: 55px; margin: 10px;">Namaste!</h1>
+        <p id="dayQuote" style="font-size: 22px; font-style: italic; color: #ffcc00;">"Sanchai hunuhunxa?"</p>
+        <h2 id="myClock">00:00:00</h2>
+    </div>
+
+    <p style="font-size: 25px;">I'm <b>Sakshyam Ghimire</b> (15) from Nepal.</p>
+    <img src="https://picsum.photos/180" style="border-radius: 50%; border: 8px solid white;">
+
+    <div class="section-box">
+        <h2 style="color: #ffcc00;">Jadu Ghar (Magic Section)</h2>
+        <button class="btn" onclick="let n = prompt('Name?'); if(n) alert('Namaste ' + n.toUpperCase() + '!');">Sodha Malai</button>
+        <button class="btn" onclick="showVipAlert()">Show VIPs</button>
+        <button class="btn" style="background: black; color: white;" onclick="bhootPrank()">DON'T CLICK</button>
+        
+        <ul id="VIP" style="display:none; font-size: 25px; list-style: none; padding: 0;">
+            <li>> sakshyam</li>
+            <li>> soyesh</li>
+            <li>> motka</li>
+            <li>> mikesh</li>
+            <li>> simran</li>
+        </ul>
+    </div>
+
+    <div class="section-box" style="background: white; color: #333;">
+        <h2 style="color: #dc143c;">Mero Nepal Gallery</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <div class="img-card" style="width: 220px; border: 4px solid #003893; border-radius: 10px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300" style="width: 100%; height: 150px; object-fit: cover;">
+                <p style="font-weight: bold;">Mt. Everest</p>
+            </div>
+            <div class="img-card" style="width: 220px; border: 4px solid #003893; border-radius: 10px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1582650839019-746eb97ec394?w=300" style="width: 100%; height: 150px; object-fit: cover;">
+                <p style="font-weight: bold;">Phewa Lake</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-box" style="background: white; color: #dc143c; border: 4px solid #003893;">
+        <h2>Guess the Number (1-20)</h2>
+        <input type="number" id="userGuess" style="padding: 10px; width: 60px; font-size: 20px; border: 2px solid #dc143c; border-radius: 10px; text-align: center;">
+        <br><br>
+        <button class="btn" style="background: #003893; color: white;" onclick="checkGuess()">Check</button>
+        <button class="btn" style="background: #777; color: white;" onclick="resetGame()">Reset</button>
+        <p id="gameFeedback" style="font-weight: bold; font-size: 20px; color: #003893;">Start guessing...</p>
+    </div>
+
+    <div class="section-box" style="background: #003893; border-color: #ffcc00;">
+        <h2 style="color: #ffcc00;">My School</h2>
+        <p style="font-size: 20px;">Vidya Niketan Secondary School</p>
+        <a href="http://vidya-niketan.edu.np" target="_blank">
+            <button class="btn" style="box-shadow: none;">Visit School Website</button>
+        </a>
+    </div>
+
+    <div class="section-box">
+        <h2 style="color: #ffcc00;">Contact Sakshyam</h2>
+        <p>Instagram: <b>@sakshyam.san</b> | Phone: <b>9824955188</b></p>
+        <form id="contactForm">
+            <input type="text" id="userName" placeholder="Your Name" style="padding: 10px; width: 80%; border-radius: 5px; margin-bottom: 10px;"><br>
+            <textarea id="userMsg" placeholder="Your Message..." style="padding: 10px; width: 80%; height: 60px; border-radius: 5px; margin-bottom: 10px;"></textarea><br>
+            <button type="button" class="btn" onclick="submitForm()">Submit Form</button>
+        </form>
+    </div>
+
+    <div class="mountains"></div>
+
+    <script>
+        // --- LOGIC 1: Clock & Greeting ---
+        function updateAll() {
+            let now = new Date();
+            document.getElementById('myClock').innerHTML = now.toLocaleTimeString();
+
+            let hour = now.getHours();
+            let greet = document.getElementById('greetText');
+            let quote = document.getElementById('dayQuote');
+            if (hour < 12) { greet.innerHTML = "Subha Prabhat!"; quote.innerHTML = "Good Morning, Sakshyam!"; }
+            else if (hour < 18) { greet.innerHTML = "Subha Din!"; quote.innerHTML = "Good Afternoon, Sakshyam!"; }
+            else { greet.innerHTML = "Subha Ratri!"; quote.innerHTML = "Good Night, Sakshyam!"; }
+        }
+        setInterval(updateAll, 1000);
+        updateAll();
+
+        // --- LOGIC 2: Game ---
+        let secret = Math.floor(Math.random() * 20) + 1;
+        function checkGuess() {
+            let g = document.getElementById('userGuess').value;
+            let f = document.getElementById('gameFeedback');
+            if (g == secret) { f.innerHTML = "JADU! You win!"; f.style.color = "green"; document.getElementById('vipSound').play(); }
+            else if (g > secret) { f.innerHTML = "Too High! Lower... ??"; f.style.color = "red"; }
+            else { f.innerHTML = "Too Low! Higher... ??"; f.style.color = "red"; }
+        }
+        function resetGame() { secret = Math.floor(Math.random() * 20) + 1; document.getElementById('gameFeedback').innerHTML = "Reset! Try again."; }
+
+        // --- LOGIC 3: Prank ---
+        function bhootPrank() {
+            document.getElementById('vipSound').play();
+            document.body.style.transform = "translateX(10px)";
+            setTimeout(() => { document.body.style.transform = "translateX(0px)"; alert("BOO! Sakshyam's Ghost!"); }, 100);
+        }
+
+        // --- LOGIC 4: Form ---
+        function submitForm() {
+            let n = document.getElementById('userName').value;
+            if(n) { alert("Namaste " + n + "! Sakshyam will see your message!"); document.getElementById('contactForm').reset(); }
+        }
+function showVipAlert() {
+    // 1. Play the sound
+    document.getElementById('vipSound').play();
+    
+    // 2. Show the VIP list on the screen
+    document.getElementById('VIP').style.display = 'block';
+    
+    // 3. The Special Message
+    alert("Yo! Want your name on this VIP list? \n\nJust contact me on Instagram: @sakshyam.san and I'll add you, bruhh!");
+}
+    </script>
+</body>
+</html>
