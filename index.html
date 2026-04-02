@@ -3,191 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakshyam Ghimire - Official Site</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <title>Sakshyam Ghimire | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- GLOBAL STYLE --- */
+        /* --- MODERN RESET --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.alphacoders.com/941/941011.jpg') no-repeat center center fixed;
+            background: #0f0f0f; /* Sleek dark background */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                              url('https://images.alphacoders.com/941/941011.jpg');
             background-size: cover;
-            color: white;
+            background-attachment: fixed;
+            color: #eeeeee;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            text-shadow: 2px 2px 4px #000000;
         }
 
+        /* --- CLOCK STICKER --- */
         #myClock {
             color: #ffcc00; 
-            background: rgba(0, 56, 147, 0.8); 
+            background: rgba(220, 20, 60, 0.2); 
             display: inline-block;
-            padding: 15px 30px;
-            border: 4px solid white;
-            border-radius: 50px;
-            font-family: monospace;
-            font-size: 50px;
-            margin-top: 20px;
-            box-shadow: 0px 10px 20px rgba(0,0,0,0.6);
+            padding: 10px 25px;
+            border: 2px solid #ffcc00;
+            border-radius: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 40px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        /* --- SECTIONS --- */
+        .section-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .btn {
-            background: white;
-            color: #dc143c;
+            background: #ffcc00;
+            color: #000;
             border: none;
-            padding: 12px 25px;
-            font-size: 18px;
+            padding: 12px 20px;
+            font-size: 16px;
             font-weight: bold;
-            border-radius: 30px;
+            border-radius: 10px;
             cursor: pointer;
-            margin: 10px;
-            font-family: 'Kalam', cursive;
-            box-shadow: 2px 4px 0px #003893;
+            margin: 5px;
             transition: 0.3s;
         }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4); }
 
-        .section-box {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            margin: 40px auto;
-            width: 85%;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(5px);
+        /* --- AVATAR --- */
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 5px solid #ffcc00;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
         }
 
-        .anime-card {
-            transition: transform 0.4s ease;
-            width: 180px;
-            margin: 10px;
-            display: inline-block;
+        /* --- GALLERY & CARDS --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
-        .anime-card:hover { transform: scale(1.1) rotate(3deg); }
-        .anime-card img {
-            width: 100%;
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
         }
+        .card:hover { transform: scale(1.05); border-color: #ffcc00; }
+        .card img { width: 100%; border-radius: 10px; }
+        .card p { margin-top: 8px; font-weight: 600; font-size: 14px; }
 
-        /* --- THE FLAG ANIMATION --- */
-        .floating-flag {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            animation: bounceFlag 2s infinite ease-in-out;
-        }
+        /* --- NEPAL FLAG --- */
+        .flag { position: fixed; bottom: 20px; right: 20px; width: 40px; animation: float 3s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        @keyframes bounceFlag {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .mountains {
-            background-color: white;
-            height: 100px;
-            width: 100%;
-            position: relative;
-            clip-path: polygon(0% 100%, 10% 40%, 25% 75%, 45% 10%, 65% 65%, 85% 25%, 100% 100%);
-            opacity: 0.8;
-        }
     </style>
 </head>
 <body>
 
     <audio id="vipSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
 
-    <div style="padding-top: 50px;">
-        <div style="font-size: 30px; color: #ffcc00; font-family: 'Kalam', cursive;">* NEPAL *</div>
-        <h1 id="greetText" style="font-size: 55px; margin: 10px;">Namaste!</h1>
-        <p id="dayQuote" style="font-size: 22px; font-style: italic; color: #ffcc00;">"Sanchai hunuhunxa?"</p>
+    <header style="padding: 40px 20px;">
+        <img src="https://wallpapercave.com/wp/wp5940428.jpg" class="profile-pic" alt="Chrollo">
+        <h1 id="greetText" style="font-family: 'Kalam'; font-size: 45px;">Namaste!</h1>
+        <p>I'm <b>Sakshyam Ghimire</b> (15) | Web Dev from Nepal 🇳🇵</p>
         <h2 id="myClock">00:00:00</h2>
-    </div>
-
-    <p style="font-size: 25px; margin-top: 20px;">I'm <b>Sakshyam Ghimire</b> (15) from Nepal.</p>
-    <img src="https://picsum.photos/180" style="border-radius: 50%; border: 6px solid #ffcc00;">
+    </header>
 
     <div class="section-box">
-        <h2 style="color: #ffcc00; font-family: 'Kalam';">Jadu Ghar (Magic Section)</h2>
-        <button class="btn" onclick="let n = prompt('Name?'); if(n) alert('Namaste ' + n.toUpperCase() + '!');">Sodha Malai</button>
-        <button class="btn" onclick="showVipAlert()">Show VIPs</button>
-        <button class="btn" style="background: black; color: white;" onclick="bhootPrank()">DON'T CLICK</button>
+        <h2 style="color: #ffcc00; margin-bottom: 15px;">Jadu Ghar ✨</h2>
+        <button class="btn" onclick="let n = prompt('Who are you?'); if(n) alert('Namaste ' + n + '! Welcome to my world.');">Sodha Malai</button>
+        <button class="btn" onclick="showVips()" style="background: #dc143c; color: white;">Show VIPs 👑</button>
         
-        <ul id="VIP" style="display:none; font-size: 25px; list-style: none; padding: 0; color: #ffcc00;">
-            <li>> sakshyam</li>
-            <li>> soyesh</li>
-            <li>> motka</li>
-            <li>> mikesh</li>
-            <li>> simran</li>
-            <li>> sumit</li>
-            <li>> samrat</li>
-        </ul>
-    </div>
-
-    <div class="section-box">
-        <h2 style="color: #ff4500; text-shadow: 2px 2px 10px #ff4500; font-family: 'Kalam';">🔥 THE NEW LEGENDS 🔥</h2>
-        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-            
-            <div class="anime-card">
-                <img src="https://m.media-amazon.com/images/I/41-qS27yOQL._AC_.jpg" style="border: 4px solid #4e342e;">
-                <p style="color: #ffcc00; font-weight: bold;">Eren Yeager</p>
-            </div>
-
-            <div class="anime-card">
-                <img src="https://m.media-amazon.com/images/I/51idq-E6BHL._AC_UF894,1000_QL80_.jpg" style="border: 4px solid #ffffff;">
-                <p style="color: #00acee; font-weight: bold;">Monkey D. Luffy</p>
-            </div>
-
+        <div id="vipList" style="display:none; margin-top: 15px;">
+            <p>🔥 Sakshyam | Soyesh | Motka | Mikesh | Simran 🔥</p>
         </div>
     </div>
 
     <div class="section-box">
-        <h2 style="color: #ffcc00;">Mero Nepal Gallery</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-            <div style="width: 200px; border: 2px solid white; border-radius: 10px; overflow: hidden;">
-                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300" style="width: 100%; height: 120px; object-fit: cover;">
+        <h2 style="color: #ff4500;">🔥 THE NEW LEGENDS 🔥</h2>
+        <div class="grid-container">
+            <div class="card">
+                <img src="https://i.pinimg.com/originals/1f/60/42/1f6042531438992c4605151e3678082f.jpg">
+                <p>Eren Yeager</p>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/originals/ee/13/96/ee139626394142f9f95701d4a8e0e01c.jpg">
+                <p>Monkey D. Luffy</p>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/originals/60/3d/8c/603d8c199583b32085750058b1464b5e.jpg">
+                <p>Nagi Seishiro</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-box">
+        <h2 style="color: #00acee;">Mero Nepal Gallery 🏔️</h2>
+        <div class="grid-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400">
                 <p>Mt. Everest</p>
             </div>
-            <div style="width: 200px; border: 2px solid white; border-radius: 10px; overflow: hidden;">
-                <img src="https://images.unsplash.com/photo-1582650839019-746eb97ec394?w=300" style="width: 100%; height: 120px; object-fit: cover;">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1582650839019-746eb97ec394?w=400">
                 <p>Phewa Lake</p>
             </div>
         </div>
     </div>
 
-    <div class="section-box" style="background: white; color: #333;">
-        <h2 style="color: #dc143c;">Guess the Number (1-20)</h2>
-        <input type="number" id="userGuess" style="padding: 10px; width: 60px; font-size: 20px; border: 2px solid #dc143c; border-radius: 10px;">
-        <br><br>
-        <button class="btn" style="background: #003893; color: white;" onclick="checkGuess()">Check</button>
-        <button class="btn" style="background: #777; color: white;" onclick="resetGame()">Reset</button>
-        <p id="gameFeedback" style="font-weight: bold; color: #003893;">Start guessing...</p>
+    <div class="section-box" style="border: 1px solid #E1306C;">
+        <h3>Contact Sakshyam</h3>
+        <p style="font-size: 14px; opacity: 0.8; margin: 10px 0;">Instagram: @sakshyam.san</p>
+        <button class="btn" style="background: #E1306C; color: white;" onclick="location.href='tel:9824955188'">Call Me</button>
     </div>
 
-    <div class="section-box" style="border: 2px solid #ffcc00;">
-        <h2 style="color: #ffcc00;">My School</h2>
-        <p>Vidya Niketan Secondary School</p>
-        <a href="http://vidya-niketan.edu.np" target="_blank">
-            <button class="btn">Visit Website</button>
-        </a>
-    </div>
-
-    <div class="section-box" style="background: #1a1a1a;">
-        <h2 style="color: #ffcc00;">Contact Sakshyam</h2>
-        <p>Instagram: <b>@sakshyam.san</b> | Phone: <b>9824955188</b></p>
-        <button class="btn" onclick="contactMe()" style="background: #E1306C; color: white;">Get on VIP List 👑</button>
-    </div>
-
-    <div class="floating-flag">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50" alt="Nepal Flag">
-    </div>
-
-    <div class="mountains"></div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" class="flag">
 
     <script>
+        // Real-time Clock & Greeting
         function updateAll() {
             let now = new Date();
             document.getElementById('myClock').innerHTML = now.toLocaleTimeString();
@@ -200,29 +172,10 @@
         setInterval(updateAll, 1000);
         updateAll();
 
-        let secret = Math.floor(Math.random() * 20) + 1;
-        function checkGuess() {
-            let g = document.getElementById('userGuess').value;
-            let f = document.getElementById('gameFeedback');
-            if (g == secret) { f.innerHTML = "JADU! You win!"; f.style.color = "green"; document.getElementById('vipSound').play(); }
-            else if (g > secret) { f.innerHTML = "Too High!"; f.style.color = "red"; }
-            else { f.innerHTML = "Too Low!"; f.style.color = "red"; }
-        }
-        function resetGame() { secret = Math.floor(Math.random() * 20) + 1; document.getElementById('gameFeedback').innerHTML = "Reset! Try again."; }
-
-        function showVipAlert() {
+        function showVips() {
             document.getElementById('vipSound').play();
-            document.getElementById('VIP').style.display = 'block';
-            alert("DM me on Instagram to get your name here, bruhh!");
-        }
-
-        function bhootPrank() {
-            document.getElementById('vipSound').play();
-            alert("BOO! Sakshyam's Ghost!");
-        }
-
-        function contactMe() {
-            alert("DM me on Instagram: @sakshyam.san\nOr call: 9824955188");
+            let list = document.getElementById('vipList');
+            list.style.display = (list.style.display === 'none') ? 'block' : 'none';
         }
     </script>
 </body>
