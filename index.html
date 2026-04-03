@@ -3,261 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakshyam Ghimire | Elite OS v4.0</title>
+    <title>Sakshyam OS | v5.0 Sorcerer</title>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Orbitron:wght@500&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --gold: #d4af37;
-            --nepal-red: #dc143c;
-            --nepal-blue: #003893;
             --glass: rgba(255, 255, 255, 0.1);
+            --neon-blue: #00f2ff;
         }
 
-        /* --- GLOBAL & ANIMATIONS --- */
-        * { box-sizing: border-box; cursor: crosshair; }
-        
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                        url('https://images.alphacoders.com/941/941011.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), 
+                        url('https://images.alphacoders.com/941/941011.jpg') center/cover fixed;
             color: white;
-            text-align: center;
             font-family: 'Poppins', sans-serif;
             margin: 0; padding: 0; overflow-x: hidden;
         }
 
-        /* --- BENTO GRID SYSTEM --- */
-        .bento-grid {
+        /* --- THE MAGIC JADU GHAR PANEL --- */
+        .jadu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            padding: 50px 20px;
-            max-width: 1300px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .glass-tile {
+        .magic-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
             padding: 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
             position: relative;
-            overflow: hidden;
         }
 
-        .glass-tile:hover {
-            transform: translateY(-12px) scale(1.02);
+        .magic-card:hover {
+            transform: scale(1.03);
             border-color: var(--gold);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
         }
 
-        /* --- UI COMPONENTS --- */
-        #myClock { font-family: 'Orbitron'; font-size: 60px; color: var(--gold); text-shadow: 0 0 15px var(--gold); }
-        
+        /* --- MATRIX CANVAS --- */
+        #matrixCanvas {
+            position: fixed; top: 0; left: 0; z-index: -1;
+            display: none; opacity: 0.3;
+        }
+
+        /* --- INPUTS & BUTTONS --- */
         .btn {
-            background: linear-gradient(145deg, #ffffff, #d1d1d1);
-            color: #111; border: none; padding: 12px 28px;
-            border-radius: 12px; font-family: 'Kalam'; font-weight: bold;
-            cursor: pointer; transition: 0.3s; margin: 8px;
-            box-shadow: 0 4px 0 #999;
+            background: white; color: black; border: none;
+            padding: 12px 24px; border-radius: 50px;
+            font-family: 'Kalam'; font-weight: bold; cursor: pointer;
+            transition: 0.3s; margin: 10px 0; width: 100%;
         }
-        .btn:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,175,55,0.4); }
-        .btn:active { transform: translateY(2px); box-shadow: 0 0px #666; }
+        .btn:hover { background: var(--gold); transform: translateY(-3px); }
 
-        /* --- ACHIEVEMENT NOTIFICATION --- */
-        #achievement-popup {
-            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(90deg, var(--gold), #f9e27d);
-            color: #000; padding: 18px 40px; border-radius: 100px;
-            font-weight: bold; transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 10000; border: 2px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        input[type=range] {
+            width: 100%; accent-color: var(--gold); cursor: pointer;
         }
 
-        /* --- FLOATING SYSTEM TRAY --- */
-        .system-tray {
-            position: fixed; bottom: 30px; right: 30px;
-            display: flex; align-items: center; gap: 20px; z-index: 9999;
-        }
-
-        #vinylDisk {
-            width: 80px; height: 80px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/b/b6/Vinyl_record_LP.800pix.jpg') center/cover;
-            border-radius: 50%; border: 4px solid var(--gold);
-            display: none; box-shadow: 0 0 25px var(--gold);
-        }
-
-        .spin-anim { animation: rotating 3.5s linear infinite; display: block !important; }
+        /* --- FLOATING ELEMENTS --- */
+        .sys-tray { position: fixed; bottom: 20px; right: 20px; display: flex; align-items: center; gap: 15px; }
+        #vinyl { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); display: none; }
+        .spin { animation: rotating 3s linear infinite; }
         @keyframes rotating { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .flag-icon { width: 55px; animation: bounce 2.5s infinite ease-in-out; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); }
-        @keyframes bounce { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(5deg); } }
-
-        /* --- VISUALIZER --- */
-        .viz { display: none; justify-content: center; gap: 5px; height: 35px; margin: 15px 0; }
-        .bar { width: 5px; height: 100%; background: var(--gold); border-radius: 10px; animation: pulse 0.6s infinite alternate; }
+        /* --- NOTIFICATION --- */
+        #toast {
+            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
+            background: var(--gold); color: black; padding: 15px 40px;
+            border-radius: 50px; font-weight: bold; transition: 0.6s; z-index: 9999;
+        }
     </style>
 </head>
-<body oncontextmenu="return customRightClick(event)">
+<body>
 
-    <div id="achievement-popup">🏆 ACHIEVEMENT: Welcome, Legend!</div>
+    <canvas id="matrixCanvas"></canvas>
+    <div id="toast">🏆 Achievement Unlocked!</div>
 
-    <audio id="vibePlayer" loop>
+    <audio id="vibeAudio" loop>
         <source src="https://www.soundjay.com/free-music/golden-brown-instrumental-sample.mp3" type="audio/mpeg">
     </audio>
 
-    <header style="padding-top: 60px;">
-        <p style="font-family: 'Kalam'; color: var(--gold); font-size: 26px; letter-spacing: 5px; margin: 0;">🇳🇵 NEPAL 🇳🇵</p>
-        <h1 id="greetText" style="font-size: 65px; margin: 10px; font-weight: 600;">Namaste!</h1>
-        <div id="myClock">00:00:00</div>
-        <div id="batteryBox" style="font-size: 14px; color: #888; margin-top: 10px;">⚡ System Power: Detecting...</div>
+    <header style="padding: 60px 20px 0;">
+        <h1 style="font-family: 'Kalam'; font-size: 55px; color: var(--gold); margin: 0;">Sakshyam's Jadu Ghar</h1>
+        <div id="clock" style="font-family: 'Orbitron'; font-size: 40px;">00:00:00</div>
     </header>
 
-    <div class="bento-grid">
-        <div class="glass-tile" style="grid-column: span 1;">
-            <h2 style="color: var(--gold); font-family: 'Kalam';">Jadu Ghar</h2>
-            <button class="btn" id="musicBtn" onclick="toggleVibe()">✨ START GOLDEN VIBE</button>
-            <div id="vibeViz" class="viz">
-                <div class="bar" style="animation-delay: 0.1s"></div>
-                <div class="bar" style="animation-delay: 0.3s"></div>
-                <div class="bar" style="animation-delay: 0.2s"></div>
-                <div class="bar" style="animation-delay: 0.4s"></div>
-                <div class="bar" style="animation-delay: 0.1s"></div>
-            </div>
-            <button class="btn" onclick="askName()">Sodha Malai</button>
-            <button class="btn" style="background: #111; color: white;" onclick="alert('BOO! 👻 Sakshyam\'s Ghost!'); unlockAchievement('Brave Heart')">DON'T CLICK</button>
+    <div class="jadu-grid">
+        <div class="magic-card">
+            <h2 style="color: var(--gold); font-family: 'Kalam';">Vibe Controller</h2>
+            <button class="btn" id="playBtn" onclick="toggleMusic()">✨ ACTIVATE GOLDEN VIBE</button>
+            <p style="font-size: 12px; color: #888;">Intensity Slider:</p>
+            <input type="range" min="0" max="1" step="0.1" value="0.5" oninput="changeVol(this.value)">
+            <button class="btn" style="background: #111; color: var(--neon-blue);" onclick="toggleMatrix()">💻 TOGGLE MATRIX MODE</button>
         </div>
 
-        <div class="glass-tile">
-            <h3 style="color: #00acee; margin-top: 0;">System Intelligence</h3>
-            <p id="deviceInfo" style="font-size: 18px;">Analyzing hardware...</p>
-            <p style="color: #aaa; font-size: 14px;">Location: <b>Banigama, Nepal</b></p>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <button class="btn" onclick="document.getElementById('vipList').style.display='block'; unlockAchievement('Socialist')">View VIP Members 👑</button>
-            <div id="vipList" style="display:none; color: var(--gold); font-weight: bold; margin-top: 10px; font-size: 18px;">
+        <div class="magic-card">
+            <h2 style="color: #00acee; font-family: 'Kalam';">Weather Spell</h2>
+            <div id="weatherDisplay" style="font-size: 20px;">
+                📍 Banigama, Nepal <br>
+                <span id="temp" style="font-size: 40px; font-weight: bold;">24°C</span><br>
+                <span id="condition">Clear Sky</span>
+            </div>
+            <button class="btn" onclick="refreshWeather()">REFRESH SPELL</button>
+        </div>
+
+        <div class="magic-card">
+            <h2 style="color: #dc143c; font-family: 'Kalam';">Secret Vault</h2>
+            <button class="btn" onclick="showVips()">🔓 OPEN VIP LIST</button>
+            <div id="vipArea" style="display:none; margin-top: 15px; font-weight: bold; color: var(--gold);">
                 sakshyam • soyesh • motka • mikesh • simran • sumit • samrat
             </div>
-        </div>
-
-        <div class="glass-tile" style="background: rgba(255,255,255,0.95); color: #222;">
-            <h3 style="color: var(--nepal-red); font-family: 'Kalam';">Number Wizard (1-20)</h3>
-            <input type="number" id="guessInput" placeholder="?" style="width: 70px; padding: 10px; font-size: 20px; border-radius: 10px; text-align: center; border: 2px solid #ddd;">
-            <br>
-            <button class="btn" style="background: var(--nepal-blue); color: white;" onclick="playGame()">CAST SPELL</button>
-            <p id="gameSms" style="font-weight: bold; margin-top: 10px;">Can you find the magic number?</p>
-        </div>
-
-        <div class="glass-tile" style="grid-column: span 1; background: #111; border-color: #333;">
-            <h3 style="color: var(--gold);">Sakshyam.san</h3>
-            <p>Instagram: <b>@sakshyam.san</b></p>
-            <p>Phone: <b>9824955188</b></p>
-            <div style="display:inline-block; padding: 5px 15px; background: green; border-radius: 20px; font-size: 12px; font-weight: bold;">LIVE: ONLINE</div>
+            <button class="btn" style="background: #333; color: white;" onclick="bhootEffect()">👻 BHOOT PRANK</button>
         </div>
     </div>
 
-    <div class="system-tray">
-        <div id="vinylDisk"></div>
-        <div class="floating-flag">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" class="flag-icon" alt="Nepal Flag">
-        </div>
+    <div class="sys-tray">
+        <img id="vinyl" class="spin" src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Vinyl_record_LP.800pix.jpg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50">
     </div>
 
     <script>
-        // 1. DYNAMIC GREETING & CLOCK
-        function runClock() {
-            const now = new Date();
-            document.getElementById('myClock').innerText = now.toLocaleTimeString();
-            const hour = now.getHours();
-            const greet = document.getElementById('greetText');
-            if(hour < 12) greet.innerText = "Subha Prabhat!";
-            else if(hour < 18) greet.innerText = "Subha Din!";
-            else greet.innerText = "Subha Ratri!";
-        }
-        setInterval(runClock, 1000);
-        runClock();
+        // 1. MUSIC & VOLUME
+        const audio = document.getElementById('vibeAudio');
+        const vinyl = document.getElementById('vinyl');
+        const playBtn = document.getElementById('playBtn');
+        let playing = false;
 
-        // 2. BATTERY TRACKER
-        if(navigator.getBattery) {
-            navigator.getBattery().then(bat => {
-                const updateBat = () => document.getElementById('batteryBox').innerText = `⚡ System Power: ${Math.round(bat.level * 100)}%`;
-                updateBat();
-                bat.onlevelchange = updateBat;
-            });
-        }
-        document.getElementById('deviceInfo').innerText = "Device: " + (navigator.userAgent.includes("Mobile") ? "Smartphone" : "Laptop/PC");
-
-        // 3. MUSIC & DISK CONTROL (GOLDEN BROWN)
-        let isPlaying = false;
-        const player = document.getElementById('vibePlayer');
-        const disk = document.getElementById('vinylDisk');
-        const mBtn = document.getElementById('musicBtn');
-        const viz = document.getElementById('vibeViz');
-
-        function toggleVibe() {
-            if (!isPlaying) {
-                player.play().then(() => {
-                    isPlaying = true;
-                    disk.classList.add('spin-anim');
-                    viz.style.display = 'flex';
-                    mBtn.innerText = "⏸ PAUSE GOLDEN VIBE";
-                    mBtn.style.background = "var(--gold)";
-                    unlockAchievement('Vibe Master');
-                }).catch(() => alert("Bruhh, browser blocked it! Click again."));
+        function toggleMusic() {
+            if (!playing) {
+                audio.play().then(() => {
+                    playing = true;
+                    vinyl.style.display = 'block';
+                    playBtn.innerText = "⏸ PAUSE VIBE";
+                    notify("Vibe Master Unlocked!");
+                }).catch(() => alert("Bruhh, click again!"));
             } else {
-                player.pause();
-                isPlaying = false;
-                disk.classList.remove('spin-anim');
-                viz.style.display = 'none';
-                mBtn.innerText = "✨ START GOLDEN VIBE";
-                mBtn.style.background = "white";
+                audio.pause();
+                playing = false;
+                vinyl.style.display = 'none';
+                playBtn.innerText = "✨ ACTIVATE GOLDEN VIBE";
             }
         }
 
-        // 4. ACHIEVEMENT TOAST LOGIC
-        function unlockAchievement(msg) {
-            const toast = document.getElementById('achievement-popup');
-            toast.innerText = `🏆 ACHIEVEMENT: ${msg}!`;
-            toast.style.top = "30px";
-            setTimeout(() => { toast.style.top = "-100px"; }, 3500);
-        }
+        function changeVol(v) { audio.volume = v; }
 
-        // 5. GAME LOGIC
-        let magicNum = Math.floor(Math.random() * 20) + 1;
-        function playGame() {
-            const input = document.getElementById('guessInput').value;
-            const feedback = document.getElementById('gameSms');
-            if (input == magicNum) {
-                feedback.innerText = "🎯 JADU! You guessed it!";
-                feedback.style.color = "green";
-                unlockAchievement('Lucky Wizard');
+        // 2. MATRIX MODE
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        let matrixInterval;
+
+        function toggleMatrix() {
+            if (canvas.style.display === 'block') {
+                canvas.style.display = 'none';
+                clearInterval(matrixInterval);
             } else {
-                feedback.innerText = input > magicNum ? "Too High! Try lower." : "Too Low! Try higher.";
-                feedback.style.color = "red";
+                canvas.style.display = 'block';
+                setupMatrix();
+                notify("Entering the Matrix...");
             }
         }
 
-        // 6. CUSTOM INTERACTION
-        function askName() {
-            let n = prompt("What is your name, bruhh?");
-            if(n) {
-                alert("Namaste " + n.toUpperCase() + "! Welcome to Sakshyam's world.");
-                unlockAchievement('New Guest');
+        function setupMatrix() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const letters = "SAKSHYAM1010101";
+            const fontSize = 16;
+            const columns = canvas.width / fontSize;
+            const drops = Array(Math.floor(columns)).fill(1);
+
+            function draw() {
+                ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#0f0";
+                ctx.font = fontSize + "px arial";
+                for (let i = 0; i < drops.length; i++) {
+                    const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                    drops[i]++;
+                }
             }
+            matrixInterval = setInterval(draw, 33);
         }
 
-        function customRightClick(e) {
-            e.preventDefault();
-            unlockAchievement('Hacker Detected');
-            alert("Namaste! Right-click is restricted. Check my Instagram: @sakshyam.san");
-            return false;
+        // 3. UI EXTRAS
+        setInterval(() => {
+            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+        }, 1000);
+
+        function notify(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = "🏆 " + msg;
+            t.style.top = "20px";
+            setTimeout(() => t.style.top = "-100px", 3000);
         }
 
-        // Initial Achievement for visiting
-        setTimeout(() => unlockAchievement('Site Visitor'), 1500);
+        function showVips() {
+            document.getElementById('vipArea').style.display = 'block';
+            notify("VIP Vault Opened!");
+        }
+
+        function bhootEffect() {
+            document.body.style.filter = "invert(1)";
+            setTimeout(() => document.body.style.filter = "none", 200);
+            alert("KHATRANAUK! 👻");
+        }
+
+        function refreshWeather() {
+            notify("Spell Casted! Weather Updated.");
+            // Static simulation for now
+            document.getElementById('temp').innerText = (Math.floor(Math.random() * 10) + 20) + "°C";
+        }
     </script>
 </body>
 </html>
