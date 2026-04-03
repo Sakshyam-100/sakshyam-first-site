@@ -79,6 +79,18 @@
             background: var(--gold); color: black; padding: 15px 40px;
             border-radius: 50px; font-weight: bold; transition: 0.6s; z-index: 9999;
         }
+        .founder-text {
+    border-right: 2px solid var(--gold);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+/* This makes the cursor blink at the end of the text */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--gold); }
+}
     </style>
 </head>
 <body>
@@ -140,6 +152,11 @@
         This is just the beginning. I am learning every day, improving my skills, and I promise to 
         return with an even bigger and better version of this site as I grow. Thanks for visiting my world!"
     </div>
+        <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+    <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid #444;">💻 Win7 Legacy</span>
+    <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid #8884d8;">🤖 Gemini AI Enhanced</span>
+    <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid var(--gold);">🔥 Design by Sakshyam</span>
+</div>
     
     <div style="margin-top: 15px; font-size: 13px; color: var(--gold); font-weight: bold;">
         📍 Dev Status: Learning & Evolving | Hardware: Legacy Win7 Laptop
