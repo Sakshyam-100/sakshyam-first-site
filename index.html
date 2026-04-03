@@ -3,91 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakshyam Ghimire - Official Site</title>
+    <title>Sakshyam Ghimire - Golden Vibe Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
     
     <style>
-        /* --- GLOBAL STYLE --- */
+        /* --- WINDOWS 7 / GLASS STYLE --- */
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
                         url('https://images.alphacoders.com/941/941011.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             text-align: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
 
-        /* --- CLOCK & CALENDAR --- */
-        .dashboard-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        #myClock, #myDate {
-            color: #ffcc00; 
-            background: rgba(0, 56, 147, 0.9); 
-            padding: 15px 25px;
-            border: 3px solid white;
-            border-radius: 20px;
-            font-family: 'Orbitron', sans-serif;
-            box-shadow: 0px 8px 15px rgba(0,0,0,0.5);
-        }
-
-        #myClock { font-size: 40px; }
-        #myDate { font-size: 20px; }
-
-        /* --- WEATHER WIDGET --- */
-        .weather-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px;
-            margin: 20px auto;
-            width: fit-content;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        /* --- UI COMPONENTS --- */
-        .btn {
-            background: white;
-            color: #dc143c;
-            border: none;
-            padding: 12px 25px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            margin: 10px;
-            font-family: 'Kalam', cursive;
-            transition: 0.3s;
-            box-shadow: 0px 4px 0px #003893;
-        }
-
-        .btn:hover { transform: translateY(-3px); box-shadow: 0px 6px 0px #003893; }
-
         .section-box {
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 30px;
             margin: 30px auto;
             width: 85%;
             max-width: 800px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
         }
 
-        /* --- DECORATIONS --- */
-        .floating-flag {
+        #myClock, #myDate {
+            color: #ffcc00; 
+            background: rgba(0, 56, 147, 0.85); 
+            padding: 15px 25px;
+            border: 2px solid #fff;
+            border-radius: 15px;
+            font-family: 'Orbitron', sans-serif;
+            display: inline-block;
+        }
+
+        .btn {
+            background: linear-gradient(to bottom, #ffffff 0%, #e1e1e1 100%);
+            color: #333;
+            border: 1px solid #707070;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-family: 'Kalam', cursive;
+            transition: 0.2s;
+        }
+
+        .btn:hover { background: #fff; transform: scale(1.02); }
+
+        /* --- FLOATING ELEMENTS --- */
+        .controls-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             z-index: 1000;
+        }
+
+        .floating-flag {
             animation: bounce 2s infinite;
+        }
+
+        #musicDisk {
+            width: 60px;
+            height: 60px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/b/b6/Vinyl_record_LP.800pix.jpg') no-repeat center center;
+            background-size: cover;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            display: none; /* Hidden until music starts */
+            box-shadow: 0 0 15px #d4af37;
+        }
+
+        .spinning {
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         @keyframes bounce {
@@ -96,179 +100,124 @@
         }
 
         .mountains {
-            background-color: rgba(255, 255, 255, 0.8);
-            height: 80px;
+            background-color: rgba(255, 255, 255, 0.7);
+            height: 60px;
             width: 100%;
             position: relative;
-            bottom: 0;
             clip-path: polygon(0% 100%, 10% 40%, 25% 75%, 45% 10%, 65% 65%, 85% 25%, 100% 100%);
         }
     </style>
 </head>
 <body>
 
-    <audio id="vipSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+    <audio id="vibeMusic" loop>
+        <source src="https://www.soundjay.com/free-music/golden-brown-instrumental-sample.mp3" type="audio/mpeg">
+    </audio>
 
     <div style="padding-top: 40px;">
-        <div style="font-size: 24px; color: #ffcc00; font-family: 'Kalam', cursive;">🇳🇵 NEPAL 🇳🇵</div>
-        <h1 id="greetText" style="font-size: 50px; margin: 10px;">Namaste!</h1>
+        <div style="font-size: 24px; color: #ffcc00; font-family: 'Kalam';">🇳🇵 Sakshyam's Digital Space 🇳🇵</div>
+        <h1 id="greetText" style="font-size: 45px; margin: 10px; text-shadow: 0 0 10px #ffcc00;">Namaste!</h1>
         
-        <div class="dashboard-container">
-            <div>
-                <h2 id="myClock">00:00:00</h2>
-                <div id="myDate" style="margin-top: 10px;">Loading Date...</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="weather-box">
-        <h3 style="margin: 0; color: #ffcc00; font-family: 'Kalam';">Live Weather</h3>
-        <div id="weather-content">
-            <p>Fetching local weather...</p>
+        <div class="dashboard">
+            <h2 id="myClock">00:00:00</h2><br>
+            <div id="myDate" style="margin-top: 10px;">Loading Date...</div>
         </div>
     </div>
 
     <div class="section-box">
-        <img src="https://picsum.photos/120" style="border-radius: 50%; border: 4px solid #ffcc00; margin-bottom: 10px;">
-        <p style="font-size: 22px;">I'm <b>Sakshyam Ghimire</b> (15) from Nepal.</p>
-        <p style="color: #ffcc00; font-style: italic;">"Sanchai hunuhunxa?"</p>
-    </div>
-
-    <div class="section-box">
-        <h2 style="color: #ffcc00; font-family: 'Kalam';">Jadu Ghar (Magic Section)</h2>
+        <h2 style="color: #d4af37; font-family: 'Kalam';">Jadu Ghar (Vibe Control)</h2>
+        <button class="btn" id="vibeBtn" onclick="toggleVibe()" style="background: #d4af37; color: #000;">✨ PLAY GOLDEN BROWN</button>
         <button class="btn" onclick="askName()">Sodha Malai</button>
-        <button class="btn" onclick="showVipAlert()">Show VIPs</button>
-        <button class="btn" style="background: #333; color: white;" onclick="bhootPrank()">DON'T CLICK</button>
+        <button class="btn" onclick="showVipAlert()">VIP List</button>
         
-        <ul id="VIP" style="display:none; font-size: 22px; list-style: none; padding: 0; color: #ffcc00; margin-top: 20px;">
-            <li>👑 sakshyam</li>
-            <li>✨ soyesh</li>
-            <li>🔥 motka</li>
-            <li>⚡ mikesh</li>
-            <li>🌸 simran</li>
-            <li>💎 sumit</li>
-            <li>🗡️ samrat</li>
+        <ul id="VIP" style="display:none; font-size: 20px; list-style: none; padding: 0; color: #ffcc00; margin-top: 15px;">
+            <li>👑 sakshyam | ✨ soyesh | 🔥 motka</li>
+            <li>⚡ mikesh | 🌸 simran | 💎 sumit | 🗡️ samrat</li>
         </ul>
     </div>
 
     <div class="section-box">
         <h2 style="color: #00acee;">Mero Nepal Gallery</h2>
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-            <div style="width: 220px; border: 2px solid white; border-radius: 15px; overflow: hidden; background: #000;">
-                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300" style="width: 100%; height: 140px; object-fit: cover;">
-                <p>Mt. Everest</p>
-            </div>
-            <div style="width: 220px; border: 2px solid white; border-radius: 15px; overflow: hidden; background: #000;">
-                <img src="https://images.unsplash.com/photo-1582650839019-746eb97ec394?w=300" style="width: 100%; height: 140px; object-fit: cover;">
-                <p>Phewa Lake</p>
-            </div>
+            <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=200" style="border-radius: 10px; border: 2px solid #fff; width: 180px;">
+            <img src="https://images.unsplash.com/photo-1582650839019-746eb97ec394?w=200" style="border-radius: 10px; border: 2px solid #fff; width: 180px;">
         </div>
     </div>
 
-    <div class="section-box" style="background: white; color: #333;">
+    <div class="section-box" style="background: rgba(255,255,255,0.9); color: #333;">
         <h2 style="color: #dc143c;">Guess the Number (1-20)</h2>
-        <input type="number" id="userGuess" placeholder="?" style="padding: 10px; width: 80px; font-size: 20px; border: 2px solid #dc143c; border-radius: 10px; text-align: center;">
-        <br><br>
-        <button class="btn" style="background: #003893; color: white;" onclick="checkGuess()">Check</button>
-        <button class="btn" style="background: #777; color: white;" onclick="resetGame()">Reset</button>
-        <p id="gameFeedback" style="font-weight: bold; color: #003893;">Start guessing...</p>
+        <input type="number" id="userGuess" style="padding: 10px; width: 60px; font-size: 18px; border-radius: 5px; border: 1px solid #333;">
+        <button class="btn" style="background: #003893; color: #fff;" onclick="checkGuess()">Check</button>
+        <p id="gameFeedback" style="font-weight: bold;">Start guessing...</p>
     </div>
 
-    <div class="section-box" style="border: 2px solid #ffcc00; background: #1a1a1a;">
-        <h2 style="color: #ffcc00; font-family: 'Kalam';">Contact & School</h2>
-        <p>🏫 <b>Vidya Niketan Secondary School</b></p>
-        <p>📸 Instagram: <a href="#" style="color: #E1306C; text-decoration: none;">@sakshyam.san</a></p>
-        <p>📞 Phone: <b>9824955188</b></p>
-        <button class="btn" onclick="contactMe()" style="background: #ffcc00; color: black;">Join VIP List 👑</button>
+    <div class="section-box" style="background: #111; border: 1px solid #ffcc00;">
+        <p>Instagram: <b style="color: #ffcc00;">@sakshyam.san</b> | School: <b>Vidya Niketan</b></p>
+        <p>Phone: <b>9824955188</b></p>
     </div>
 
-    <div class="floating-flag">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50" alt="Nepal Flag">
+    <div class="controls-container">
+        <div id="musicDisk" class="spinning"></div>
+        <div class="floating-flag">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50" alt="Nepal Flag">
+        </div>
     </div>
 
     <div class="mountains"></div>
 
     <script>
-        // --- CLOCK & CALENDAR SCRIPT ---
-        function updateDateTime() {
+        // --- DATE & TIME ---
+        function updateAll() {
             let now = new Date();
-            
-            // Update Time
             document.getElementById('myClock').innerHTML = now.toLocaleTimeString();
-            
-            // Update Date (Calendar)
             let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('myDate').innerHTML = now.toLocaleDateString('en-US', options);
 
-            // Update Greeting
             let hour = now.getHours();
             let greet = document.getElementById('greetText');
             if (hour < 12) greet.innerHTML = "Subha Prabhat!";
             else if (hour < 18) greet.innerHTML = "Subha Din!";
             else greet.innerHTML = "Subha Ratri!";
         }
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
+        setInterval(updateAll, 1000);
+        updateAll();
 
-        // --- WEATHER SCRIPT (Using a free public API fallback) ---
-        async function fetchWeather() {
-            const weatherContent = document.getElementById('weather-content');
-            try {
-                // Fetching weather for Kathmandu as a default
-                const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=27.70&longitude=85.32&current_weather=true');
-                const data = await response.json();
-                const temp = data.current_weather.temperature;
-                const code = data.current_weather.weathercode;
-                
-                weatherContent.innerHTML = `
-                    <div style="font-size: 24px; font-weight: bold;">${temp}°C</div>
-                    <div style="font-size: 14px;">Kathmandu, Nepal</div>
-                `;
-            } catch (error) {
-                weatherContent.innerHTML = "<p>Weather unavailable</p>";
+        // --- MUSIC LOGIC ---
+        let playing = false;
+        const music = document.getElementById('vibeMusic');
+        const disk = document.getElementById('musicDisk');
+        const btn = document.getElementById('vibeBtn');
+
+        function toggleVibe() {
+            if (playing) {
+                music.pause();
+                disk.style.display = 'none';
+                btn.innerHTML = "✨ PLAY GOLDEN BROWN";
+            } else {
+                music.play();
+                disk.style.display = 'block';
+                btn.innerHTML = "⏸ PAUSE VIBE";
             }
+            playing = !playing;
         }
-        fetchWeather();
 
-        // --- GAME SCRIPT ---
+        // --- INTERACTION ---
+        function askName() {
+            let n = prompt('Name?');
+            if(n) alert('Namaste ' + n.toUpperCase() + '!');
+        }
+
+        function showVipAlert() {
+            document.getElementById('VIP').style.display = 'block';
+            alert("DM me to join the VIP list, bruhh!");
+        }
+
         let secret = Math.floor(Math.random() * 20) + 1;
         function checkGuess() {
             let g = document.getElementById('userGuess').value;
             let f = document.getElementById('gameFeedback');
-            if (g == secret) { 
-                f.innerHTML = "JADU! You win!"; f.style.color = "green"; 
-                document.getElementById('vipSound').play(); 
-            }
-            else if (g > secret) { f.innerHTML = "Too High! ↓"; f.style.color = "red"; }
-            else { f.innerHTML = "Too Low! ↑"; f.style.color = "red"; }
-        }
-        function resetGame() { 
-            secret = Math.floor(Math.random() * 20) + 1; 
-            document.getElementById('gameFeedback').innerHTML = "Reset! Try again."; 
-            document.getElementById('userGuess').value = "";
-        }
-
-        // --- INTERACTION SCRIPTS ---
-        function askName() {
-            let n = prompt('What is your name?'); 
-            if(n) alert('Namaste ' + n.toUpperCase() + '! Welcome to Sakshyam\'s world.');
-        }
-
-        function showVipAlert() {
-            document.getElementById('vipSound').play();
-            document.getElementById('VIP').style.display = 'block';
-            alert("DM me on Instagram to join the VIPs!");
-        }
-
-        function bhootPrank() {
-            document.getElementById('vipSound').play();
-            document.body.style.backgroundColor = "red";
-            setTimeout(() => { document.body.style.backgroundColor = ""; }, 200);
-            alert("👻 BOO! Sakshyam's Ghost caught you!");
-        }
-
-        function contactMe() {
-            alert("DM me on Instagram: @sakshyam.san\nOr call: 9824955188");
+            if (g == secret) { f.innerHTML = "JADU! You win!"; f.style.color = "green"; }
+            else { f.innerHTML = g > secret ? "Too high!" : "Too low!"; f.style.color = "red"; }
         }
     </script>
 </body>
