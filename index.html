@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakshyam OS | v5.0 Sorcerer</title>
+    <title>Sakshyam | The Golden Portfolio</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Orbitron:wght@500&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     
     <style>
@@ -11,6 +12,7 @@
             --gold: #d4af37;
             --glass: rgba(255, 255, 255, 0.1);
             --neon-blue: #00f2ff;
+            --nepal-red: #dc143c;
         }
 
         body {
@@ -21,57 +23,44 @@
             margin: 0; padding: 0; overflow-x: hidden;
         }
 
-        /* --- THE MAGIC JADU GHAR PANEL --- */
-        .jadu-grid {
+        /* --- BENTO GRID SYSTEM --- */
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
             padding: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .magic-card {
+        .glass-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 30px;
-            padding: 30px;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 25px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
             position: relative;
         }
 
-        .magic-card:hover {
-            transform: scale(1.03);
+        .glass-card:hover {
+            transform: scale(1.02);
             border-color: var(--gold);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
         }
 
-        /* --- MATRIX CANVAS --- */
-        #matrixCanvas {
-            position: fixed; top: 0; left: 0; z-index: -1;
-            display: none; opacity: 0.3;
-        }
-
-        /* --- INPUTS & BUTTONS --- */
+        /* --- BUTTONS --- */
         .btn {
             background: white; color: black; border: none;
-            padding: 12px 24px; border-radius: 50px;
+            padding: 12px 20px; border-radius: 50px;
             font-family: 'Kalam'; font-weight: bold; cursor: pointer;
-            transition: 0.3s; margin: 10px 0; width: 100%;
+            transition: 0.3s; margin: 8px 0; width: 100%;
         }
         .btn:hover { background: var(--gold); transform: translateY(-3px); }
 
-        input[type=range] {
-            width: 100%; accent-color: var(--gold); cursor: pointer;
-        }
-
-        /* --- FLOATING ELEMENTS --- */
-        .sys-tray { position: fixed; bottom: 20px; right: 20px; display: flex; align-items: center; gap: 15px; }
-        #vinyl { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); display: none; }
-        .spin { animation: rotating 3s linear infinite; }
-        @keyframes rotating { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        /* --- MATRIX CANVAS --- */
+        #matrixCanvas { position: fixed; top: 0; left: 0; z-index: -1; display: none; opacity: 0.3; }
 
         /* --- NOTIFICATION --- */
         #toast {
@@ -79,18 +68,14 @@
             background: var(--gold); color: black; padding: 15px 40px;
             border-radius: 50px; font-weight: bold; transition: 0.6s; z-index: 9999;
         }
-        .founder-text {
-    border-right: 2px solid var(--gold);
-    white-space: nowrap;
-    overflow: hidden;
-    animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
-}
 
-/* This makes the cursor blink at the end of the text */
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: var(--gold); }
-}
+        /* --- SYSTEM TRAY --- */
+        .sys-tray { position: fixed; bottom: 20px; right: 20px; display: flex; align-items: center; gap: 15px; z-index: 100; }
+        #vinyl { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); display: none; }
+        .spin { animation: rotating 3s linear infinite; }
+        @keyframes rotating { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; }
     </style>
 </head>
 <body>
@@ -102,36 +87,38 @@
         <source src="https://www.soundjay.com/free-music/golden-brown-instrumental-sample.mp3" type="audio/mpeg">
     </audio>
 
-    <header style="padding: 60px 20px 0;">
+    <header style="padding: 60px 20px 20px; text-align: center;">
         <h1 style="font-family: 'Kalam'; font-size: 55px; color: var(--gold); margin: 0;">Sakshyam's Jadu Ghar</h1>
         <div id="clock" style="font-family: 'Orbitron'; font-size: 40px;">00:00:00</div>
     </header>
 
-    <div class="jadu-grid">
-        <div class="magic-card">
+    <div class="bento-grid">
+        
+        <div class="glass-card" style="grid-column: 1 / -1; border-top: 4px solid #00acee; text-align: left;">
+            <h2 style="color: var(--gold); font-family: 'Kalam'; margin-bottom: 10px;">Founder's Log: The Journey 🚀</h2>
+            <div style="line-height: 1.8; font-size: 16px; color: #eee; font-style: italic; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 15px;">
+                "Hello everyone! It’s me, <b>Sakshyam</b>, the host of this site. It's my curiosity that led me to create this space during my final exam vacations. 
+                I want to get better at coding and web hosting because <b>IT is my future path.</b> 
+                Currently, I’m using my uncle’s 15-year-old laptop running <b>Windows 7</b>. 
+                To be real, I’m learning as I go, using <b>Gemini AI</b> to help with the code while I provide the ideas and design. 
+                I hope you like it—I'm going to keep improving!"
+            </div>
+            <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 11px; border: 1px solid #444;">💻 Win7 Legacy</span>
+                <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 11px; border: 1px solid #00acee;">🤖 Gemini AI</span>
+                <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 11px; border: 1px solid var(--gold);">🔥 Design by Sakshyam</span>
+            </div>
+        </div>
+
+        <div class="glass-card">
             <h2 style="color: var(--gold); font-family: 'Kalam';">Vibe Controller</h2>
             <button class="btn" id="playBtn" onclick="toggleMusic()">✨ ACTIVATE GOLDEN VIBE</button>
-            <p style="font-size: 12px; color: #888;">Intensity Slider:</p>
+            <p style="font-size: 12px; color: #888;">Volume Level:</p>
             <input type="range" min="0" max="1" step="0.1" value="0.5" oninput="changeVol(this.value)">
-            <button class="btn" style="background: #111; color: var(--neon-blue);" onclick="toggleMatrix()">💻 TOGGLE MATRIX MODE</button>
-        </div>
-        <p style="font-size: 14px; margin-bottom: 5px; margin-top: 15px;">JavaScript Logic</p>
-        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 10px; width: 100%;">
-            <div style="background: #f7df1e; height: 100%; width: 45%; border-radius: 10px; box-shadow: 0 0 10px #f7df1e;"></div>
+            <button class="btn" style="background: #111; color: var(--neon-blue);" onclick="toggleMatrix()">💻 MATRIX MODE</button>
         </div>
 
-        <p style="font-size: 14px; margin-bottom: 5px; margin-top: 15px;">AI Collaboration (Gemini)</p>
-        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 10px; width: 100%;">
-            <div style="background: #00acee; height: 100%; width: 90%; border-radius: 10px; box-shadow: 0 0 10px #00acee;"></div>
-        </div>
-    </div>
-
-    <button class="btn" style="margin-top: 20px; width: 100%; font-size: 14px;" onclick="unlockAchievement('Future IT Pro')">
-        UPGRADE SKILLS ⚡
-    </button>
-</div>
-
-        <div class="magic-card">
+        <div class="glass-card">
             <h2 style="color: #00acee; font-family: 'Kalam';">Weather Spell</h2>
             <div id="weatherDisplay" style="font-size: 20px;">
                 📍 Banigama, Nepal <br>
@@ -141,76 +128,41 @@
             <button class="btn" onclick="refreshWeather()">REFRESH SPELL</button>
         </div>
 
-        <div class="magic-card">
+        <div class="glass-card">
             <h2 style="color: #dc143c; font-family: 'Kalam';">Secret Vault</h2>
             <button class="btn" onclick="showVips()">🔓 OPEN VIP LIST</button>
-            <div id="vipArea" style="display:none; margin-top: 15px; font-weight: bold; color: var(--gold);">
+            <div id="vipArea" style="display:none; margin: 10px 0; font-weight: bold; color: var(--gold);">
                 sakshyam • soyesh • motka • mikesh • simran • sumit • samrat
             </div>
             <button class="btn" style="background: #333; color: white;" onclick="bhootEffect()">👻 BHOOT PRANK</button>
+            <button class="btn" style="background: var(--nepal-red); color: white;" onclick="selfDestruct()">⚠️ SYSTEM OVERLOAD</button>
         </div>
+
+        <div class="glass-card" style="border-left: 4px solid var(--gold);">
+            <h2 style="color: var(--gold); font-family: 'Kalam';">Connect</h2>
+            <div style="text-align: left; font-size: 14px;">
+                <p>📸 Insta: <span style="color: #00acee;">@sakshyam.san</span></p>
+                <p>📞 WhatsApp: <span>9824955188</span></p>
+                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="font-size: 12px;">DM <b>#GOLDENVIBE</b> to join VIPs</p>
+            </div>
+            <button class="btn" onclick="window.open('https://instagram.com/sakshyam.san')">SEND DM 🚀</button>
+        </div>
+
     </div>
-    <div class="glass-tile" style="grid-column: 1 / -1; border-top: 4px solid #00acee; text-align: left;">
-    <h2 style="color: var(--gold); font-family: 'Kalam'; margin-bottom: 10px;">Founder's Log: The Journey 🚀</h2>
-    
-    <div style="line-height: 1.8; font-size: 16px; color: #eee; font-style: italic; background: rgba(0,0,0,0.2); padding: 25px; border-radius: 15px;">
-        "Hello everyone! It’s me, <b>Sakshyam</b>, the host and creator of this digital space. 
-        This site was born out of pure curiosity during my final exam vacations. While most people are just resting, 
-        I decided to dive into the world of web hosting and creation.
-        <br><br>
-        My goal is to master coding and web development because I’ve already chosen my path: <b>Information Technology (IT) is my future.</b> 
-        Currently, I’m building all of this on my uncle’s 15-year-old laptop running <b>Windows 7</b>. 
-        If I’m being completely real, I started this journey knowing very little about HTML or CSS. 
-        I’ve been collaborating with <b>Gemini AI</b> to write the code, but the vision, the aesthetic, 
-        and every single design idea you see here came straight from my brain.
-        <br><br>
-        This is just the beginning. I am learning every day, improving my skills, and I promise to 
-        return with an even bigger and better version of this site as I grow. Thanks for visiting my world!"
-    </div>
-        <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
-    <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid #444;">💻 Win7 Legacy</span>
-    <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid #8884d8;">🤖 Gemini AI Enhanced</span>
-    <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid var(--gold);">🔥 Design by Sakshyam</span>
-</div>
-    
-    <div style="margin-top: 15px; font-size: 13px; color: var(--gold); font-weight: bold;">
-        📍 Dev Status: Learning & Evolving | Hardware: Legacy Win7 Laptop
-    </div>
-</div>
 
     <div class="sys-tray">
         <img id="vinyl" class="spin" src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Vinyl_record_LP.800pix.jpg">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50">
     </div>
-    <div class="glass-tile" style="grid-column: span 1; border-left: 4px solid var(--gold);">
-    <h2 style="color: var(--gold); font-family: 'Kalam'; margin-bottom: 5px;">Connect with Legend</h2>
-    <p style="font-size: 14px; color: #aaa; margin-bottom: 20px;">Official Portals of Sakshyam Ghimire</p>
-    
-    <div style="text-align: left; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 15px;">
-        <p>📸 <b>Instagram:</b> <span style="color: #00acee;">@sakshyam.san</span></p>
-        <p>📞 <b>WhatsApp:</b> <span style="color: #25D366;">9824955188</span></p>
-        <p>🏫 <b>Base:</b> Vidya Niketan, Biratnagar</p>
-    </div>
-
-    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
-
-    <h3 style="color: #ffcc00; font-family: 'Kalam';">How to join the VIP List? 👑</h3>
-    <p style="font-size: 13px; line-height: 1.6;">
-        The VIP list is reserved for the **OG inner circle**. To apply:
-    </p>
-    <ul style="text-align: left; font-size: 13px; color: #ddd; padding-left: 20px;">
-        <li>Follow <b>@sakshyam.san</b> on Insta.</li>
-        <li>Send a DM with the secret code: <code style="color:var(--gold)">#GOLDENVIBE</code></li>
-        <li>Prove you are a real one.</li>
-    </ul>
-    
-    <button class="btn" style="width: 100%; background: var(--gold); color: black;" onclick="window.open('https://instagram.com/sakshyam.san')">
-        SEND APPLICATION 🚀
-    </button>
-</div>
 
     <script>
-        // 1. MUSIC & VOLUME
+        // 1. CLOCK
+        setInterval(() => {
+            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+        }, 1000);
+
+        // 2. MUSIC
         const audio = document.getElementById('vibeAudio');
         const vinyl = document.getElementById('vinyl');
         const playBtn = document.getElementById('playBtn');
@@ -223,7 +175,7 @@
                     vinyl.style.display = 'block';
                     playBtn.innerText = "⏸ PAUSE VIBE";
                     notify("Vibe Master Unlocked!");
-                }).catch(() => alert("Bruhh, click again!"));
+                }).catch(() => alert("Click again, bruhh!"));
             } else {
                 audio.pause();
                 playing = false;
@@ -231,14 +183,12 @@
                 playBtn.innerText = "✨ ACTIVATE GOLDEN VIBE";
             }
         }
-
         function changeVol(v) { audio.volume = v; }
 
-        // 2. MATRIX MODE
+        // 3. MATRIX
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
         let matrixInterval;
-
         function toggleMatrix() {
             if (canvas.style.display === 'block') {
                 canvas.style.display = 'none';
@@ -249,15 +199,13 @@
                 notify("Entering the Matrix...");
             }
         }
-
         function setupMatrix() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            const letters = "SAKSHYAM1010101";
+            const letters = "SAKSHYAM10101";
             const fontSize = 16;
             const columns = canvas.width / fontSize;
             const drops = Array(Math.floor(columns)).fill(1);
-
             function draw() {
                 ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -273,11 +221,7 @@
             matrixInterval = setInterval(draw, 33);
         }
 
-        // 3. UI EXTRAS
-        setInterval(() => {
-            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
-        }, 1000);
-
+        // 4. PRANKS & UI
         function notify(msg) {
             const t = document.getElementById('toast');
             t.innerText = "🏆 " + msg;
@@ -287,7 +231,7 @@
 
         function showVips() {
             document.getElementById('vipArea').style.display = 'block';
-            notify("VIP Vault Opened!");
+            notify("Vault Opened!");
         }
 
         function bhootEffect() {
@@ -296,10 +240,22 @@
             alert("KHATRANAUK! 👻");
         }
 
+        function selfDestruct() {
+            let conf = confirm("WARNING: Old hardware detected. Force overload?");
+            if(conf) {
+                document.body.style.transition = "1s";
+                document.body.style.filter = "blur(15px) grayscale(1)";
+                setTimeout(() => {
+                    alert("SYSTEM ERROR: Win7 is crying. Just joking, Sakshyam! 😂");
+                    document.body.style.filter = "none";
+                    notify("Troll Master!");
+                }, 1500);
+            }
+        }
+
         function refreshWeather() {
-            notify("Spell Casted! Weather Updated.");
-            // Static simulation for now
-            document.getElementById('temp').innerText = (Math.floor(Math.random() * 10) + 20) + "°C";
+            notify("Weather Updated.");
+            document.getElementById('temp').innerText = (Math.floor(Math.random() * 5) + 22) + "°C";
         }
     </script>
 </body>
