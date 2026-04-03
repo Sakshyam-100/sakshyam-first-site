@@ -3,222 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakshyam Ghimire - Golden Vibe Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <title>Sakshyam Ghimire | Elite OS v4.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Orbitron:wght@500&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- WINDOWS 7 / GLASS STYLE --- */
+        :root {
+            --gold: #d4af37;
+            --nepal-red: #dc143c;
+            --nepal-blue: #003893;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- GLOBAL & ANIMATIONS --- */
+        * { box-sizing: border-box; cursor: crosshair; }
+        
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
                         url('https://images.alphacoders.com/941/941011.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             text-align: center;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0; overflow-x: hidden;
         }
 
-        .section-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        /* --- BENTO GRID SYSTEM --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 50px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .glass-tile {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 25px;
             padding: 30px;
-            margin: 30px auto;
-            width: 85%;
-            max-width: 800px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-        }
-
-        #myClock, #myDate {
-            color: #ffcc00; 
-            background: rgba(0, 56, 147, 0.85); 
-            padding: 15px 25px;
-            border: 2px solid #fff;
-            border-radius: 15px;
-            font-family: 'Orbitron', sans-serif;
-            display: inline-block;
-        }
-
-        .btn {
-            background: linear-gradient(to bottom, #ffffff 0%, #e1e1e1 100%);
-            color: #333;
-            border: 1px solid #707070;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-            font-family: 'Kalam', cursive;
-            transition: 0.2s;
-        }
-
-        .btn:hover { background: #fff; transform: scale(1.02); }
-
-        /* --- FLOATING ELEMENTS --- */
-        .controls-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 1000;
-        }
-
-        .floating-flag {
-            animation: bounce 2s infinite;
-        }
-
-        #musicDisk {
-            width: 60px;
-            height: 60px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/b/b6/Vinyl_record_LP.800pix.jpg') no-repeat center center;
-            background-size: cover;
-            border-radius: 50%;
-            border: 2px solid #d4af37;
-            display: none; /* Hidden until music starts */
-            box-shadow: 0 0 15px #d4af37;
-        }
-
-        .spinning {
-            animation: rotate 3s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .mountains {
-            background-color: rgba(255, 255, 255, 0.7);
-            height: 60px;
-            width: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             position: relative;
-            clip-path: polygon(0% 100%, 10% 40%, 25% 75%, 45% 10%, 65% 65%, 85% 25%, 100% 100%);
+            overflow: hidden;
         }
+
+        .glass-tile:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        /* --- UI COMPONENTS --- */
+        #myClock { font-family: 'Orbitron'; font-size: 60px; color: var(--gold); text-shadow: 0 0 15px var(--gold); }
+        
+        .btn {
+            background: linear-gradient(145deg, #ffffff, #d1d1d1);
+            color: #111; border: none; padding: 12px 28px;
+            border-radius: 12px; font-family: 'Kalam'; font-weight: bold;
+            cursor: pointer; transition: 0.3s; margin: 8px;
+            box-shadow: 0 4px 0 #999;
+        }
+        .btn:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,175,55,0.4); }
+        .btn:active { transform: translateY(2px); box-shadow: 0 0px #666; }
+
+        /* --- ACHIEVEMENT NOTIFICATION --- */
+        #achievement-popup {
+            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--gold), #f9e27d);
+            color: #000; padding: 18px 40px; border-radius: 100px;
+            font-weight: bold; transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 10000; border: 2px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* --- FLOATING SYSTEM TRAY --- */
+        .system-tray {
+            position: fixed; bottom: 30px; right: 30px;
+            display: flex; align-items: center; gap: 20px; z-index: 9999;
+        }
+
+        #vinylDisk {
+            width: 80px; height: 80px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/b/b6/Vinyl_record_LP.800pix.jpg') center/cover;
+            border-radius: 50%; border: 4px solid var(--gold);
+            display: none; box-shadow: 0 0 25px var(--gold);
+        }
+
+        .spin-anim { animation: rotating 3.5s linear infinite; display: block !important; }
+        @keyframes rotating { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .flag-icon { width: 55px; animation: bounce 2.5s infinite ease-in-out; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); }
+        @keyframes bounce { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(5deg); } }
+
+        /* --- VISUALIZER --- */
+        .viz { display: none; justify-content: center; gap: 5px; height: 35px; margin: 15px 0; }
+        .bar { width: 5px; height: 100%; background: var(--gold); border-radius: 10px; animation: pulse 0.6s infinite alternate; }
     </style>
 </head>
-<body>
+<body oncontextmenu="return customRightClick(event)">
 
-    <audio id="vibeMusic" loop>
+    <div id="achievement-popup">🏆 ACHIEVEMENT: Welcome, Legend!</div>
+
+    <audio id="vibePlayer" loop>
         <source src="https://www.soundjay.com/free-music/golden-brown-instrumental-sample.mp3" type="audio/mpeg">
     </audio>
 
-    <div style="padding-top: 40px;">
-        <div style="font-size: 24px; color: #ffcc00; font-family: 'Kalam';">🇳🇵 Sakshyam's Digital Space 🇳🇵</div>
-        <h1 id="greetText" style="font-size: 45px; margin: 10px; text-shadow: 0 0 10px #ffcc00;">Namaste!</h1>
-        
-        <div class="dashboard">
-            <h2 id="myClock">00:00:00</h2><br>
-            <div id="myDate" style="margin-top: 10px;">Loading Date...</div>
+    <header style="padding-top: 60px;">
+        <p style="font-family: 'Kalam'; color: var(--gold); font-size: 26px; letter-spacing: 5px; margin: 0;">🇳🇵 NEPAL 🇳🇵</p>
+        <h1 id="greetText" style="font-size: 65px; margin: 10px; font-weight: 600;">Namaste!</h1>
+        <div id="myClock">00:00:00</div>
+        <div id="batteryBox" style="font-size: 14px; color: #888; margin-top: 10px;">⚡ System Power: Detecting...</div>
+    </header>
+
+    <div class="bento-grid">
+        <div class="glass-tile" style="grid-column: span 1;">
+            <h2 style="color: var(--gold); font-family: 'Kalam';">Jadu Ghar</h2>
+            <button class="btn" id="musicBtn" onclick="toggleVibe()">✨ START GOLDEN VIBE</button>
+            <div id="vibeViz" class="viz">
+                <div class="bar" style="animation-delay: 0.1s"></div>
+                <div class="bar" style="animation-delay: 0.3s"></div>
+                <div class="bar" style="animation-delay: 0.2s"></div>
+                <div class="bar" style="animation-delay: 0.4s"></div>
+                <div class="bar" style="animation-delay: 0.1s"></div>
+            </div>
+            <button class="btn" onclick="askName()">Sodha Malai</button>
+            <button class="btn" style="background: #111; color: white;" onclick="alert('BOO! 👻 Sakshyam\'s Ghost!'); unlockAchievement('Brave Heart')">DON'T CLICK</button>
+        </div>
+
+        <div class="glass-tile">
+            <h3 style="color: #00acee; margin-top: 0;">System Intelligence</h3>
+            <p id="deviceInfo" style="font-size: 18px;">Analyzing hardware...</p>
+            <p style="color: #aaa; font-size: 14px;">Location: <b>Banigama, Nepal</b></p>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+            <button class="btn" onclick="document.getElementById('vipList').style.display='block'; unlockAchievement('Socialist')">View VIP Members 👑</button>
+            <div id="vipList" style="display:none; color: var(--gold); font-weight: bold; margin-top: 10px; font-size: 18px;">
+                sakshyam • soyesh • motka • mikesh • simran • sumit • samrat
+            </div>
+        </div>
+
+        <div class="glass-tile" style="background: rgba(255,255,255,0.95); color: #222;">
+            <h3 style="color: var(--nepal-red); font-family: 'Kalam';">Number Wizard (1-20)</h3>
+            <input type="number" id="guessInput" placeholder="?" style="width: 70px; padding: 10px; font-size: 20px; border-radius: 10px; text-align: center; border: 2px solid #ddd;">
+            <br>
+            <button class="btn" style="background: var(--nepal-blue); color: white;" onclick="playGame()">CAST SPELL</button>
+            <p id="gameSms" style="font-weight: bold; margin-top: 10px;">Can you find the magic number?</p>
+        </div>
+
+        <div class="glass-tile" style="grid-column: span 1; background: #111; border-color: #333;">
+            <h3 style="color: var(--gold);">Sakshyam.san</h3>
+            <p>Instagram: <b>@sakshyam.san</b></p>
+            <p>Phone: <b>9824955188</b></p>
+            <div style="display:inline-block; padding: 5px 15px; background: green; border-radius: 20px; font-size: 12px; font-weight: bold;">LIVE: ONLINE</div>
         </div>
     </div>
 
-    <div class="section-box">
-        <h2 style="color: #d4af37; font-family: 'Kalam';">Jadu Ghar (Vibe Control)</h2>
-        <button class="btn" id="vibeBtn" onclick="toggleVibe()" style="background: #d4af37; color: #000;">✨ PLAY GOLDEN BROWN</button>
-        <button class="btn" onclick="askName()">Sodha Malai</button>
-        <button class="btn" onclick="showVipAlert()">VIP List</button>
-        
-        <ul id="VIP" style="display:none; font-size: 20px; list-style: none; padding: 0; color: #ffcc00; margin-top: 15px;">
-            <li>👑 sakshyam | ✨ soyesh | 🔥 motka</li>
-            <li>⚡ mikesh | 🌸 simran | 💎 sumit | 🗡️ samrat</li>
-        </ul>
-    </div>
-
-    <div class="section-box">
-        <h2 style="color: #00acee;">Mero Nepal Gallery</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-            <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=200" style="border-radius: 10px; border: 2px solid #fff; width: 180px;">
-            <img src="https://images.unsplash.com/photo-1582650839019-746eb97ec394?w=200" style="border-radius: 10px; border: 2px solid #fff; width: 180px;">
-        </div>
-    </div>
-
-    <div class="section-box" style="background: rgba(255,255,255,0.9); color: #333;">
-        <h2 style="color: #dc143c;">Guess the Number (1-20)</h2>
-        <input type="number" id="userGuess" style="padding: 10px; width: 60px; font-size: 18px; border-radius: 5px; border: 1px solid #333;">
-        <button class="btn" style="background: #003893; color: #fff;" onclick="checkGuess()">Check</button>
-        <p id="gameFeedback" style="font-weight: bold;">Start guessing...</p>
-    </div>
-
-    <div class="section-box" style="background: #111; border: 1px solid #ffcc00;">
-        <p>Instagram: <b style="color: #ffcc00;">@sakshyam.san</b> | School: <b>Vidya Niketan</b></p>
-        <p>Phone: <b>9824955188</b></p>
-    </div>
-
-    <div class="controls-container">
-        <div id="musicDisk" class="spinning"></div>
+    <div class="system-tray">
+        <div id="vinylDisk"></div>
         <div class="floating-flag">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50" alt="Nepal Flag">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" class="flag-icon" alt="Nepal Flag">
         </div>
     </div>
-
-    <div class="mountains"></div>
 
     <script>
-        // --- DATE & TIME ---
-        function updateAll() {
-            let now = new Date();
-            document.getElementById('myClock').innerHTML = now.toLocaleTimeString();
-            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('myDate').innerHTML = now.toLocaleDateString('en-US', options);
-
-            let hour = now.getHours();
-            let greet = document.getElementById('greetText');
-            if (hour < 12) greet.innerHTML = "Subha Prabhat!";
-            else if (hour < 18) greet.innerHTML = "Subha Din!";
-            else greet.innerHTML = "Subha Ratri!";
+        // 1. DYNAMIC GREETING & CLOCK
+        function runClock() {
+            const now = new Date();
+            document.getElementById('myClock').innerText = now.toLocaleTimeString();
+            const hour = now.getHours();
+            const greet = document.getElementById('greetText');
+            if(hour < 12) greet.innerText = "Subha Prabhat!";
+            else if(hour < 18) greet.innerText = "Subha Din!";
+            else greet.innerText = "Subha Ratri!";
         }
-        setInterval(updateAll, 1000);
-        updateAll();
+        setInterval(runClock, 1000);
+        runClock();
 
-        // --- MUSIC LOGIC ---
-        let playing = false;
-        const music = document.getElementById('vibeMusic');
-        const disk = document.getElementById('musicDisk');
-        const btn = document.getElementById('vibeBtn');
+        // 2. BATTERY TRACKER
+        if(navigator.getBattery) {
+            navigator.getBattery().then(bat => {
+                const updateBat = () => document.getElementById('batteryBox').innerText = `⚡ System Power: ${Math.round(bat.level * 100)}%`;
+                updateBat();
+                bat.onlevelchange = updateBat;
+            });
+        }
+        document.getElementById('deviceInfo').innerText = "Device: " + (navigator.userAgent.includes("Mobile") ? "Smartphone" : "Laptop/PC");
+
+        // 3. MUSIC & DISK CONTROL (GOLDEN BROWN)
+        let isPlaying = false;
+        const player = document.getElementById('vibePlayer');
+        const disk = document.getElementById('vinylDisk');
+        const mBtn = document.getElementById('musicBtn');
+        const viz = document.getElementById('vibeViz');
 
         function toggleVibe() {
-            if (playing) {
-                music.pause();
-                disk.style.display = 'none';
-                btn.innerHTML = "✨ PLAY GOLDEN BROWN";
+            if (!isPlaying) {
+                player.play().then(() => {
+                    isPlaying = true;
+                    disk.classList.add('spin-anim');
+                    viz.style.display = 'flex';
+                    mBtn.innerText = "⏸ PAUSE GOLDEN VIBE";
+                    mBtn.style.background = "var(--gold)";
+                    unlockAchievement('Vibe Master');
+                }).catch(() => alert("Bruhh, browser blocked it! Click again."));
             } else {
-                music.play();
-                disk.style.display = 'block';
-                btn.innerHTML = "⏸ PAUSE VIBE";
+                player.pause();
+                isPlaying = false;
+                disk.classList.remove('spin-anim');
+                viz.style.display = 'none';
+                mBtn.innerText = "✨ START GOLDEN VIBE";
+                mBtn.style.background = "white";
             }
-            playing = !playing;
         }
 
-        // --- INTERACTION ---
+        // 4. ACHIEVEMENT TOAST LOGIC
+        function unlockAchievement(msg) {
+            const toast = document.getElementById('achievement-popup');
+            toast.innerText = `🏆 ACHIEVEMENT: ${msg}!`;
+            toast.style.top = "30px";
+            setTimeout(() => { toast.style.top = "-100px"; }, 3500);
+        }
+
+        // 5. GAME LOGIC
+        let magicNum = Math.floor(Math.random() * 20) + 1;
+        function playGame() {
+            const input = document.getElementById('guessInput').value;
+            const feedback = document.getElementById('gameSms');
+            if (input == magicNum) {
+                feedback.innerText = "🎯 JADU! You guessed it!";
+                feedback.style.color = "green";
+                unlockAchievement('Lucky Wizard');
+            } else {
+                feedback.innerText = input > magicNum ? "Too High! Try lower." : "Too Low! Try higher.";
+                feedback.style.color = "red";
+            }
+        }
+
+        // 6. CUSTOM INTERACTION
         function askName() {
-            let n = prompt('Name?');
-            if(n) alert('Namaste ' + n.toUpperCase() + '!');
+            let n = prompt("What is your name, bruhh?");
+            if(n) {
+                alert("Namaste " + n.toUpperCase() + "! Welcome to Sakshyam's world.");
+                unlockAchievement('New Guest');
+            }
         }
 
-        function showVipAlert() {
-            document.getElementById('VIP').style.display = 'block';
-            alert("DM me to join the VIP list, bruhh!");
+        function customRightClick(e) {
+            e.preventDefault();
+            unlockAchievement('Hacker Detected');
+            alert("Namaste! Right-click is restricted. Check my Instagram: @sakshyam.san");
+            return false;
         }
 
-        let secret = Math.floor(Math.random() * 20) + 1;
-        function checkGuess() {
-            let g = document.getElementById('userGuess').value;
-            let f = document.getElementById('gameFeedback');
-            if (g == secret) { f.innerHTML = "JADU! You win!"; f.style.color = "green"; }
-            else { f.innerHTML = g > secret ? "Too high!" : "Too low!"; f.style.color = "red"; }
-        }
+        // Initial Achievement for visiting
+        setTimeout(() => unlockAchievement('Site Visitor'), 1500);
     </script>
 </body>
 </html>
