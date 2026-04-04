@@ -79,6 +79,20 @@
             background: var(--gold); color: black; padding: 15px 40px;
             border-radius: 50px; font-weight: bold; transition: 0.6s; z-index: 9999;
         }
+        * {
+    cursor: crosshair !important;
+}
+        /* ... all your other CSS is above here ... */
+
+        /* --- THE MOBILE FIX (PASTE HERE) --- */
+        @media (max-width: 600px) {
+            header h1 { font-size: 35px !important; }
+            #clock { font-size: 25px !important; }
+            .jadu-grid { padding: 15px; }
+            .magic-card { padding: 20px; }
+        }
+    </style>
+</head>
     </style>
 </head>
 <body>
@@ -255,6 +269,10 @@
             notify("Spell Casted! Weather Updated.");
             document.getElementById('temp').innerText = (Math.floor(Math.random() * 10) + 20) + "°C";
         }
+        window.onload = function() {
+    notify("Welcome to Sakshyam's World!");
+    console.log("System Status: Running on Legacy Hardware (Win7)");
+};
     </script>
 </body>
 </html>
