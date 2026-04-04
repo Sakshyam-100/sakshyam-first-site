@@ -180,6 +180,30 @@
         <button class="btn" style="width: auto; background: #0f0; color: black; margin: 0;" onclick="runCommand()">RUN</button>
     </div>
 </div>
+    <div class="magic-card" style="grid-column: 1 / -1; border-top: 4px solid #ff00ff; background: rgba(50,0,50,0.3);">
+    <h2 style="color: #ff00ff; font-family: 'Orbitron';">🎮 Sakshyam's Gaming Center</h2>
+    <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Lightweight games for heavy legends.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+        
+        <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 20px; border: 1px solid #ff00ff;">
+            <h3 style="margin-top: 0; color: #00f2ff;">Clicker Boss</h3>
+            <p style="font-size: 24px; font-weight: bold; color: white;" id="scoreDisplay">Score: 0</p>
+            <button class="btn" style="background: #ff00ff; color: white;" onclick="addScore()">TAP TO ATTACK ⚔️</button>
+            <p style="font-size: 11px; color: #888;">Can you reach 100?</p>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 20px; border: 1px solid #0f0;">
+            <h3 style="margin-top: 0; color: #0f0;">Reflex Test</h3>
+            <div id="reflexBox" style="height: 60px; background: #333; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold;" onclick="checkReflex()">
+                Wait for GREEN...
+            </div>
+            <p id="reflexResult" style="font-size: 12px; margin-top: 10px; color: #aaa;">Best Time: --ms</p>
+            <button class="btn" style="background: #0f0; color: black; font-size: 12px;" onclick="startReflex()">START TEST</button>
+        </div>
+
+    </div>
+</div>
 
     <script>
         // 1. CLOCK
@@ -320,6 +344,54 @@
 document.getElementById('terminal-input')?.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') runCommand();
 });
+        // --- GAME 1: CLICKER LOGIC ---
+let score = 0;
+function addScore() {
+    score++;
+    document.getElementById('scoreDisplay').innerText = "Score: " + score;
+    if (score === 50) notify("Halfway to Legend!");
+    if (score === 100) {
+        notify("🏆 CLICK GOD UNLOCKED!");
+        document.getElementById('scoreDisplay').style.color = "var(--gold)";
+    }
+}
+
+// --- GAME 2: REFLEX LOGIC ---
+let startTime;
+let waitingForClick = false;
+let timeout;
+
+function startReflex() {
+    const box = document.getElementById('reflexBox');
+    const result = document.getElementById('reflexResult');
+    box.style.background = "#ff4444";
+    box.innerText = "STAY READY...";
+    result.innerText = "Best Time: --ms";
+    waitingForClick = false;
+
+    let randomTime = Math.floor(Math.random() * 3000) + 2000; // 2-5 seconds
+    timeout = setTimeout(() => {
+        box.style.background = "#0f0";
+        box.innerText = "CLICK NOW!!!";
+        startTime = Date.now();
+        waitingForClick = true;
+    }, randomTime);
+}
+
+function checkReflex() {
+    const box = document.getElementById('reflexBox');
+    if (waitingForClick) {
+        let reactionTime = Date.now() - startTime;
+        box.innerText = reactionTime + "ms!";
+        document.getElementById('reflexResult').innerText = "Last Time: " + reactionTime + "ms";
+        waitingForClick = false;
+        if(reactionTime < 250) notify("Godlike Reflexes! 🔥");
+    } else {
+        clearTimeout(timeout);
+        box.style.background = "#333";
+        box.innerText = "TOO FAST! Restarting...";
+    }
+}
     </script>
 </body>
 </html>
