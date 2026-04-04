@@ -11,16 +11,15 @@
         
         .status-bar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); display: flex; justify-content: space-around; align-items: center; padding: 15px 0; border-bottom: 2px solid var(--gold); z-index: 1000; }
         .stat-box { font-family: 'Orbitron'; font-size: 1.2rem; }
-        .lives { color: var(--danger); }
+        .lives { color: var(--danger); font-weight: bold; }
         .score { color: var(--gold); }
 
         .jadu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
         .game-card { background: var(--glass); border-radius: 20px; padding: 20px; border: 1px solid rgba(255,255,255,0.1); }
         .btn { background: white; color: black; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; font-family: 'Kalam'; }
         
-        /* GRID HUNTER STYLES */
         .grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 10px; }
-        .grid-box { height: 60px; background: rgba(255,255,255,0.1); border-radius: 8px; cursor: pointer; }
+        .grid-box { height: 60px; background: rgba(255,255,255,0.1); border-radius: 8px; cursor: pointer; border: 1px solid #333; }
         .target { background: var(--neon-blue) !important; box-shadow: 0 0 15px var(--neon-blue); }
 
         .vip-list { background: rgba(212, 175, 55, 0.05); border: 1px solid var(--gold); padding: 15px; border-radius: 15px; margin-top: 20px; text-align: left; }
@@ -30,31 +29,31 @@
 <body onload="init()">
 
     <div class="status-bar">
-        <div class="stat-box lives">LIVES: <span id="life-count">??????</span></div>
+        <div class="stat-box lives">HP: <span id="life-count">|||</span></div>
         <div class="stat-box" style="font-family: 'Kalam'; letter-spacing: 2px;">GAMING ZONE</div>
-        <div class="stat-box score">TOTAL: <span id="total-score">0</span></div>
+        <div class="stat-box score">POINTS: <span id="total-score">0</span></div>
     </div>
 
     <div class="jadu-grid">
         
         <div class="game-card">
-            <h3>?? Logic Sequence</h3>
-            <p id="mem-msg">Watch the sequence...</p>
+            <h3>LOGIC SEQUENCE</h3>
+            <p id="mem-msg">Wait for it...</p>
             <div id="seq-display" style="font-size: 24px; letter-spacing: 10px; color: var(--gold); height: 35px;"></div>
             <input type="text" id="memInput" placeholder="Repeat..." style="width: 80%; background: #000; color: #fff; border: 1px solid #444; padding: 5px; text-align: center;">
             <button class="btn" onclick="checkSequence()">SUBMIT (+40)</button>
-            <button class="btn" style="background:var(--gold); font-size: 12px;" onclick="startSequence()">SHOW NEW</button>
+            <button class="btn" style="background:var(--gold); font-size: 12px;" onclick="startSequence()">NEW ROUND</button>
         </div>
 
         <div class="game-card">
-            <h3>?? Fast Math</h3>
+            <h3>FAST MATH</h3>
             <p id="math-problem">Ready?</p>
-            <input type="number" id="mathInput" placeholder="?">
+            <input type="number" id="mathInput" placeholder="Answer">
             <button class="btn" onclick="checkMath()">CHECK (+20)</button>
         </div>
 
         <div class="game-card">
-            <h3>?? Grid Hunter</h3>
+            <h3>GRID HUNTER</h3>
             <p>Catch the blue box!</p>
             <div class="grid-container" id="grid">
                 <div class="grid-box" onclick="hunt(0)"></div>
@@ -70,7 +69,7 @@
         </div>
 
         <div class="game-card" style="grid-column: 1 / -1;">
-            <h2 style="font-family: 'Kalam'; color: var(--gold);">?? VIP GAMING HALL (TOP 10)</h2>
+            <h2 style="font-family: 'Kalam'; color: var(--gold);">VIP GAMING HALL (TOP 10)</h2>
             <div id="leaderboard" class="vip-list"></div>
             <button class="btn" style="width:auto; padding: 10px 40px; margin-top: 20px;" onclick="window.location.href='index.html'">BACK TO ENTRANCE</button>
         </div>
@@ -81,39 +80,45 @@
         let lives = 3;
         let vips = JSON.parse(localStorage.getItem('gamingVIPs')) || [];
         
-        // GAME 1 LOGIC
+        function updateUI() {
+            document.getElementById('total-score').innerText = totalScore;
+            // NEW LIVES DISPLAY: USES BARS INSTEAD OF HEARTS
+            let bars = "";
+            for(let i=0; i<lives; i++) bars += "|";
+            document.getElementById('life-count').innerText = bars || "OVER";
+            if(lives <= 0) gameOver();
+        }
+
         let currentSeq = "";
         function startSequence() {
             currentSeq = Math.floor(1000 + Math.random() * 9000).toString();
             document.getElementById('seq-display').innerText = currentSeq;
             document.getElementById('mem-msg').innerText = "Memorize!";
             setTimeout(() => { 
-                document.getElementById('seq-display').innerText = "****"; 
-                document.getElementById('mem-msg').innerText = "Type it!";
+                document.getElementById('seq-display').innerText = "----"; 
+                document.getElementById('mem-msg').innerText = "Type now!";
             }, 1500);
         }
+
         function checkSequence() {
             let userVal = document.getElementById('memInput').value;
             if(userVal === currentSeq && currentSeq !== "") {
                 totalScore += 40;
                 document.getElementById('memInput').value = "";
                 startSequence();
-            } else {
-                lives--;
-                startSequence();
-            }
+            } else { lives--; startSequence(); }
             updateUI();
         }
 
-        // GAME 2 LOGIC
         let currentAns = 0;
         function newMath() {
             let n1 = Math.floor(Math.random() * 30) + 5;
             let n2 = Math.floor(Math.random() * 20) + 5;
             currentAns = n1 + n2;
-            document.getElementById('math-problem').innerText = `${n1} + ${n2} = ?`;
+            document.getElementById('math-problem').innerText = n1 + " + " + n2 + " = ?";
             document.getElementById('mathInput').value = "";
         }
+
         function checkMath() {
             if(parseInt(document.getElementById('mathInput').value) === currentAns) {
                 totalScore += 20;
@@ -122,7 +127,6 @@
             updateUI();
         }
 
-        // GAME 3 LOGIC
         let targetIndex = -1;
         function moveTarget() {
             const boxes = document.querySelectorAll('.grid-box');
@@ -130,32 +134,21 @@
             targetIndex = Math.floor(Math.random() * 9);
             boxes[targetIndex].classList.add('target');
         }
+
         function hunt(idx) {
             if(idx === targetIndex) {
                 totalScore += 15;
                 moveTarget();
-            } else {
-                lives--;
-                moveTarget();
-            }
+            } else { lives--; moveTarget(); }
             updateUI();
         }
 
-        // SYSTEM LOGIC
         function init() {
             updateUI();
             renderLeaderboard();
             newMath();
             moveTarget();
-            setInterval(moveTarget, 2000); // Target jumps every 2 seconds if not caught
-        }
-
-        function updateUI() {
-            document.getElementById('total-score').innerText = totalScore;
-            let hearts = "";
-            for(let i=0; i<lives; i++) hearts += "??";
-            document.getElementById('life-count').innerText = hearts || "DEAD";
-            if(lives <= 0) gameOver();
+            setInterval(moveTarget, 2000);
         }
 
         function gameOver() {
@@ -178,7 +171,7 @@
                     <span>${i + 1}. ${p.name}</span>
                     <span style="color:var(--gold)">${p.score} pts</span>
                 </div>
-            `).join('') : "<p style='text-align:center'>No Legends Yet...</p>";
+            `).join('') : "No Legends Yet...";
         }
     </script>
 </body>
