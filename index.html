@@ -19,6 +19,7 @@
             color: white;
             font-family: 'Poppins', sans-serif;
             margin: 0; padding: 0; overflow-x: hidden;
+            cursor: crosshair !important;
         }
 
         /* --- THE MAGIC JADU GHAR PANEL --- */
@@ -49,12 +50,9 @@
         }
 
         /* --- MATRIX CANVAS --- */
-        #matrixCanvas {
-            position: fixed; top: 0; left: 0; z-index: -1;
-            display: none; opacity: 0.3;
-        }
+        #matrixCanvas { position: fixed; top: 0; left: 0; z-index: -1; display: none; opacity: 0.3; }
 
-        /* --- INPUTS & BUTTONS --- */
+        /* --- BUTTONS --- */
         .btn {
             background: white; color: black; border: none;
             padding: 12px 24px; border-radius: 50px;
@@ -63,15 +61,7 @@
         }
         .btn:hover { background: var(--gold); transform: translateY(-3px); }
 
-        input[type=range] {
-            width: 100%; accent-color: var(--gold); cursor: pointer;
-        }
-
-        /* --- FLOATING ELEMENTS --- */
-        .sys-tray { position: fixed; bottom: 20px; right: 20px; display: flex; align-items: center; gap: 15px; }
-        #vinyl { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); display: none; }
-        .spin { animation: rotating 3s linear infinite; }
-        @keyframes rotating { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; }
 
         /* --- NOTIFICATION --- */
         #toast {
@@ -79,20 +69,20 @@
             background: var(--gold); color: black; padding: 15px 40px;
             border-radius: 50px; font-weight: bold; transition: 0.6s; z-index: 9999;
         }
-        * {
-    cursor: crosshair !important;
-}
-        /* ... all your other CSS is above here ... */
 
-        /* --- THE MOBILE FIX (PASTE HERE) --- */
+        /* --- SYSTEM TRAY --- */
+        .sys-tray { position: fixed; bottom: 20px; right: 20px; display: flex; align-items: center; gap: 15px; }
+        #vinyl { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); display: none; }
+        .spin { animation: rotating 3s linear infinite; }
+        @keyframes rotating { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* MOBILE FIX */
         @media (max-width: 600px) {
             header h1 { font-size: 35px !important; }
             #clock { font-size: 25px !important; }
             .jadu-grid { padding: 15px; }
             .magic-card { padding: 20px; }
         }
-    </style>
-</head>
     </style>
 </head>
 <body>
@@ -110,6 +100,19 @@
     </header>
 
     <div class="jadu-grid">
+        
+        <div class="magic-card" style="grid-column: 1 / -1;">
+            <h2 style="color: var(--gold); font-family: 'Kalam'; margin-bottom: 10px;">Founder's Log: The Journey 🚀</h2>
+            <div style="line-height: 1.8; font-size: 16px; color: #eee; font-style: italic; background: rgba(0,0,0,0.2); padding: 25px; border-radius: 15px;">
+                "Hello guyz its me sakshyam the host of this site. it my curiosity to create the site. its final exam vaccation and yeah so i started hosting and creating in the vaccation of exam.i wanna be more good in cooding and web hosting cuz i am gonna choose the path of IT in future.for now i am. using my uncles old laptop to do these stuff.it is the 15 year old window 7. If i have to be real i dont know anything about cooding and html. i am just writing prompts in gemini and pasting it. but the ideas and designings are mine. I hope that u like this site and yeah i am gonna improve myself and learn cooding and create a better site."
+            </div>
+            <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid #444;">💻 Win7 Legacy</span>
+                <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid #8884d8;">🤖 Gemini AI Enhanced</span>
+                <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid var(--gold);">🔥 Design by Sakshyam</span>
+            </div>
+        </div>
+
         <div class="magic-card">
             <h2 style="color: var(--gold); font-family: 'Kalam';">Vibe Controller</h2>
             <button class="btn" id="playBtn" onclick="toggleMusic()">✨ ACTIVATE GOLDEN VIBE</button>
@@ -132,86 +135,58 @@
             <h2 style="color: #dc143c; font-family: 'Kalam';">Secret Vault</h2>
             <button class="btn" onclick="showVips()">🔓 OPEN VIP LIST</button>
             <div id="vipArea" style="display:none; margin-top: 15px; font-weight: bold; color: var(--gold);">
-                sakshyam • soyesh • motka • mikesh • simran • sumit • samrat ! subhani
+                sakshyam • soyesh • motka • mikesh • simran • sumit • samrat • subhani
             </div>
             <button class="btn" style="background: #333; color: white;" onclick="bhootEffect()">👻 BHOOT PRANK</button>
             <button class="btn" style="background: #ff4444; color: white;" onclick="selfDestruct()">⚠️ SYSTEM OVERLOAD</button>
         </div>
 
-        <div class="magic-card" style="grid-column: 1 / -1; text-align: left;">
-            <h2 style="color: var(--gold); font-family: 'Kalam'; margin-bottom: 10px;">Founder's Log: The Journey 🚀</h2>
-            <div style="line-height: 1.8; font-size: 16px; color: #eee; font-style: italic; background: rgba(0,0,0,0.2); padding: 25px; border-radius: 15px;">
-                "Hello guyz its me sakshyam the host of this site. it my curiosity to create the site. its final exam vaccation and yeah so i started hosting and creating in the vaccation of exam.i wanna be more good in cooding and web hosting cuz i am gonna choose the path of IT in future.for now i am. using my uncles old laptop to do these stuff.it is the 15 year old window 7. If i have to be real i dont know anything about cooding and html. i am just writing prompts in gemini and pasting it. but the ideas and designings are mine. I hope that u like this site and yeah i am gonna improve myself and learn cooding and create a better site."
+        <div class="magic-card" style="grid-column: 1 / -1; border-top: 4px solid #ff00ff; background: rgba(50,0,50,0.3);">
+            <h2 style="color: #ff00ff; font-family: 'Orbitron';">🎮 Gaming Center</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 20px; border: 1px solid #ff00ff;">
+                    <h3 style="margin-top: 0; color: #00f2ff;">Clicker Boss</h3>
+                    <p style="font-size: 24px; font-weight: bold; color: white;" id="scoreDisplay">Score: 0</p>
+                    <button class="btn" style="background: #ff00ff; color: white;" onclick="addScore()">TAP TO ATTACK ⚔️</button>
+                </div>
+                <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 20px; border: 1px solid #0f0;">
+                    <h3 style="margin-top: 0; color: #0f0;">Reflex Test</h3>
+                    <div id="reflexBox" style="height: 60px; background: #333; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold;" onclick="checkReflex()">Wait...</div>
+                    <button class="btn" style="background: #0f0; color: black; font-size: 12px; margin-top:10px;" onclick="startReflex()">START TEST</button>
+                </div>
             </div>
-            <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
-                <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid #444;">💻 Win7 Legacy</span>
-                <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid #8884d8;">🤖 Gemini AI Enhanced</span>
-                <span style="background: #222; padding: 5px 12px; border-radius: 15px; font-size: 12px; border: 1px solid var(--gold);">🔥 Design by Sakshyam</span>
+        </div>
+
+        <div class="magic-card" style="grid-column: 1 / -1; border-left: 5px solid #0f0; background: rgba(0,20,0,0.4);">
+            <h2 style="color: #0f0; font-family: 'Orbitron'; font-size: 18px;">> SAKSHYAM_OS_TERMINAL_v5.0</h2>
+            <div id="terminal-output" style="height: 100px; overflow-y: auto; background: black; padding: 10px; border-radius: 10px; font-family: monospace; color: #0f0; font-size: 13px; text-align: left; border: 1px solid #0f0;">
+                [System] Booting... Type 'help'
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <input type="text" id="terminal-input" placeholder="Enter command..." style="flex-grow: 1; background: #111; border: 1px solid #0f0; color: #0f0; padding: 10px; border-radius: 5px; font-family: monospace;">
+                <button class="btn" style="width: auto; background: #0f0; color: black; margin: 0;" onclick="runCommand()">RUN</button>
             </div>
         </div>
 
         <div class="magic-card" style="border-left: 4px solid var(--gold);">
-            <h2 style="color: var(--gold); font-family: 'Kalam';">Connect</h2>
+            <h2 style="color: var(--gold); font-family: 'Kalam';">Connect with Legend</h2>
             <div style="text-align: left; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 15px; font-size: 14px;">
-                <p>📸 <b>Instagram:</b> <span style="color: #00acee;">@sakshyam.san</span></p>
-                <p>📞 <b>WhatsApp:</b> <span style="color: #25D366;">9824955188</span></p>
+                <p>📸 <b>Instagram:</b> @sakshyam.san</p>
+                <p>📞 <b>WhatsApp:</b> 9824955188</p>
             </div>
-            <p style="font-size: 12px; margin-top: 10px;">DM <b>#GOLDENVIBE</b> to join VIPs</p>
-            <button class="btn" onclick="window.open('https://instagram.com/sakshyam.san')">SEND APPLICATION 🚀</button>
+            <button class="btn" style="background: var(--gold); color: black;" onclick="window.open('https://instagram.com/sakshyam.san')">SEND APPLICATION 🚀</button>
         </div>
-    </div>
 
-    <div class="sys-tray">
+    </div> <div class="sys-tray">
         <img id="vinyl" class="spin" src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Vinyl_record_LP.800pix.jpg">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" width="50">
     </div>
-    <div class="magic-card" style="grid-column: 1 / -1; border-left: 5px solid #0f0; background: rgba(0,20,0,0.4);">
-    <h2 style="color: #0f0; font-family: 'Orbitron'; font-size: 20px;">> SAKSHYAM_OS_TERMINAL_v5.0</h2>
-    <p style="font-size: 12px; color: #0f0; opacity: 0.7; margin-bottom: 15px;">Run system commands on Win7 Legacy Hardware...</p>
-    
-    <div id="terminal-output" style="height: 120px; overflow-y: auto; background: black; padding: 15px; border-radius: 10px; font-family: monospace; color: #0f0; font-size: 13px; text-align: left; border: 1px solid #0f0;">
-        [System] Booting Sakshyam OS...<br>
-        [System] Welcome, User.<br>
-        [System] Type 'help' to see commands.
-    </div>
-
-    <div style="display: flex; gap: 10px; margin-top: 10px;">
-        <input type="text" id="terminal-input" placeholder="Enter command..." style="flex-grow: 1; background: #111; border: 1px solid #0f0; color: #0f0; padding: 10px; border-radius: 5px; font-family: monospace;">
-        <button class="btn" style="width: auto; background: #0f0; color: black; margin: 0;" onclick="runCommand()">RUN</button>
-    </div>
-</div>
-    <div class="magic-card" style="grid-column: 1 / -1; border-top: 4px solid #ff00ff; background: rgba(50,0,50,0.3);">
-    <h2 style="color: #ff00ff; font-family: 'Orbitron';">🎮 Sakshyam's Gaming Center</h2>
-    <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Lightweight games for heavy legends.</p>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-        
-        <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 20px; border: 1px solid #ff00ff;">
-            <h3 style="margin-top: 0; color: #00f2ff;">Clicker Boss</h3>
-            <p style="font-size: 24px; font-weight: bold; color: white;" id="scoreDisplay">Score: 0</p>
-            <button class="btn" style="background: #ff00ff; color: white;" onclick="addScore()">TAP TO ATTACK ⚔️</button>
-            <p style="font-size: 11px; color: #888;">Can you reach 100?</p>
-        </div>
-
-        <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 20px; border: 1px solid #0f0;">
-            <h3 style="margin-top: 0; color: #0f0;">Reflex Test</h3>
-            <div id="reflexBox" style="height: 60px; background: #333; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold;" onclick="checkReflex()">
-                Wait for GREEN...
-            </div>
-            <p id="reflexResult" style="font-size: 12px; margin-top: 10px; color: #aaa;">Best Time: --ms</p>
-            <button class="btn" style="background: #0f0; color: black; font-size: 12px;" onclick="startReflex()">START TEST</button>
-        </div>
-
-    </div>
-</div>
 
     <script>
-        // 1. CLOCK
-        setInterval(() => {
-            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
-        }, 1000);
+        // --- 1. CLOCK ---
+        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
 
-        // 2. MUSIC & VOLUME
+        // --- 2. MUSIC ---
         const audio = document.getElementById('vibeAudio');
         const vinyl = document.getElementById('vinyl');
         const playBtn = document.getElementById('playBtn');
@@ -220,48 +195,34 @@
         function toggleMusic() {
             if (!playing) {
                 audio.play().then(() => {
-                    playing = true;
-                    vinyl.style.display = 'block';
-                    playBtn.innerText = "⏸ PAUSE VIBE";
-                    notify("Vibe Master Unlocked!");
+                    playing = true; vinyl.style.display = 'block';
+                    playBtn.innerText = "⏸ PAUSE VIBE"; notify("Vibe Active!");
                 }).catch(() => alert("Bruhh, click again!"));
             } else {
-                audio.pause();
-                playing = false;
-                vinyl.style.display = 'none';
-                playBtn.innerText = "✨ ACTIVATE GOLDEN VIBE";
+                audio.pause(); playing = false;
+                vinyl.style.display = 'none'; playBtn.innerText = "✨ ACTIVATE GOLDEN VIBE";
             }
         }
         function changeVol(v) { audio.volume = v; }
 
-        // 3. MATRIX MODE
+        // --- 3. MATRIX ---
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
         let matrixInterval;
-
         function toggleMatrix() {
             if (canvas.style.display === 'block') {
-                canvas.style.display = 'none';
-                clearInterval(matrixInterval);
+                canvas.style.display = 'none'; clearInterval(matrixInterval);
             } else {
-                canvas.style.display = 'block';
-                setupMatrix();
-                notify("Entering the Matrix...");
+                canvas.style.display = 'block'; setupMatrix(); notify("Matrix Active!");
             }
         }
-
         function setupMatrix() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            const letters = "SAKSHYAM10101";
-            const fontSize = 16;
-            const columns = canvas.width / fontSize;
-            const drops = Array(Math.floor(columns)).fill(1);
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            const letters = "SAKSHYAM10101"; const fontSize = 16;
+            const columns = canvas.width / fontSize; const drops = Array(Math.floor(columns)).fill(1);
             function draw() {
-                ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "#0f0";
-                ctx.font = fontSize + "px arial";
+                ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#0f0"; ctx.font = fontSize + "px arial";
                 for (let i = 0; i < drops.length; i++) {
                     const text = letters.charAt(Math.floor(Math.random() * letters.length));
                     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -272,126 +233,64 @@
             matrixInterval = setInterval(draw, 33);
         }
 
-        // 4. UI EXTRAS & PRANKS
-        function notify(msg) {
-            const t = document.getElementById('toast');
-            t.innerText = "🏆 " + msg;
-            t.style.top = "20px";
-            setTimeout(() => t.style.top = "-100px", 3000);
+        // --- 4. TERMINAL ---
+        function runCommand() {
+            let input = document.getElementById('terminal-input');
+            let output = document.getElementById('terminal-output');
+            let cmd = input.value.toLowerCase().trim();
+            let res = "";
+            if (cmd === "help") res = "> Available: 'about', 'hardware', 'clear', 'hack'";
+            else if (cmd === "about") res = "> Sakshyam: Future IT Legend. Website status: Huge.";
+            else if (cmd === "hardware") res = "> Using: 15-year-old Windows 7 Laptop (Legacy)";
+            else if (cmd === "clear") { output.innerHTML = ""; res = "> Cleared."; }
+            else if (cmd === "hack") { res = "> Access Denied. Win7 Firewall too strong!"; notify("Security Alert!"); }
+            else { res = "> Command not found: " + cmd; }
+            output.innerHTML += `<br>visitor:~$ ${cmd}<br>${res}`;
+            output.scrollTop = output.scrollHeight;
+            input.value = "";
+        }
+        document.getElementById('terminal-input')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') runCommand(); });
+
+        // --- 5. GAMES ---
+        let score = 0;
+        function addScore() {
+            score++; document.getElementById('scoreDisplay').innerText = "Score: " + score;
+            if (score === 100) notify("🏆 CLICK GOD!");
         }
 
-        function showVips() {
-            document.getElementById('vipArea').style.display = 'block';
-            notify("VIP Vault Opened!");
+        let startT, waiting = false, tOut;
+        function startReflex() {
+            const b = document.getElementById('reflexBox');
+            b.style.background = "#ff4444"; b.innerText = "READY...";
+            tOut = setTimeout(() => {
+                b.style.background = "#0f0"; b.innerText = "CLICK!";
+                startT = Date.now(); waiting = true;
+            }, Math.random() * 3000 + 2000);
         }
-
-        function bhootEffect() {
-            document.body.style.filter = "invert(1)";
-            setTimeout(() => document.body.style.filter = "none", 200);
-            alert("KHATRANAUK! 👻");
-        }
-
-        function selfDestruct() {
-            let confirmLoad = confirm("WARNING: 15-year-old hardware cannot handle this request. Proceed anyway?");
-            if(confirmLoad) {
-                document.body.style.transition = "2s";
-                document.body.style.filter = "blur(20px) grayscale(1)";
-                setTimeout(() => {
-                    alert("SYSTEM ERROR: Windows 7 has left the chat. Just kidding, bruhh! 😆");
-                    document.body.style.filter = "none";
-                    notify("Troll Master!");
-                }, 2000);
+        function checkReflex() {
+            if (waiting) {
+                let time = Date.now() - startT;
+                document.getElementById('reflexBox').innerText = time + "ms";
+                waiting = false; notify(time + "ms! 🔥");
             }
         }
 
-        function refreshWeather() {
-            notify("Spell Casted! Weather Updated.");
-            document.getElementById('temp').innerText = (Math.floor(Math.random() * 10) + 20) + "°C";
+        // --- 6. UTILS ---
+        function notify(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = "🏆 " + msg; t.style.top = "20px";
+            setTimeout(() => t.style.top = "-100px", 3000);
         }
-        window.onload = function() {
-    notify("Welcome to Sakshyam's World!");
-    console.log("System Status: Running on Legacy Hardware (Win7)");
-};
-        function runCommand() {
-    let input = document.getElementById('terminal-input');
-    let output = document.getElementById('terminal-output');
-    let cmd = input.value.toLowerCase().trim();
-    
-    let response = "";
-    
-    if (cmd === "help") {
-        response = "> Available: 'about', 'hardware', 'clear', 'hack'";
-    } else if (cmd === "about") {
-        response = "> Sakshyam: Future IT Legend. Website status: Huge.";
-    } else if (cmd === "hardware") {
-        response = "> Running on: 15-year-old Windows 7 Laptop (Legacy)";
-    } else if (cmd === "clear") {
-        output.innerHTML = "";
-        response = "> Terminal Cleared.";
-    } else if (cmd === "hack") {
-        response = "> Access Denied. Nice try, bruhh!";
-        notify("Security Alert!");
-    } else {
-        response = "> Command not found: " + cmd;
-    }
-
-    output.innerHTML += `<br><span style="color:white">visitor@sakshyam:~$ ${input.value}</span><br>${response}`;
-    output.scrollTop = output.scrollHeight; // Auto-scrolls to bottom
-    input.value = ""; // Clears input
-}
-
-// Allow pressing 'Enter' to run command
-document.getElementById('terminal-input')?.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') runCommand();
-});
-        // --- GAME 1: CLICKER LOGIC ---
-let score = 0;
-function addScore() {
-    score++;
-    document.getElementById('scoreDisplay').innerText = "Score: " + score;
-    if (score === 50) notify("Halfway to Legend!");
-    if (score === 100) {
-        notify("🏆 CLICK GOD UNLOCKED!");
-        document.getElementById('scoreDisplay').style.color = "var(--gold)";
-    }
-}
-
-// --- GAME 2: REFLEX LOGIC ---
-let startTime;
-let waitingForClick = false;
-let timeout;
-
-function startReflex() {
-    const box = document.getElementById('reflexBox');
-    const result = document.getElementById('reflexResult');
-    box.style.background = "#ff4444";
-    box.innerText = "STAY READY...";
-    result.innerText = "Best Time: --ms";
-    waitingForClick = false;
-
-    let randomTime = Math.floor(Math.random() * 3000) + 2000; // 2-5 seconds
-    timeout = setTimeout(() => {
-        box.style.background = "#0f0";
-        box.innerText = "CLICK NOW!!!";
-        startTime = Date.now();
-        waitingForClick = true;
-    }, randomTime);
-}
-
-function checkReflex() {
-    const box = document.getElementById('reflexBox');
-    if (waitingForClick) {
-        let reactionTime = Date.now() - startTime;
-        box.innerText = reactionTime + "ms!";
-        document.getElementById('reflexResult').innerText = "Last Time: " + reactionTime + "ms";
-        waitingForClick = false;
-        if(reactionTime < 250) notify("Godlike Reflexes! 🔥");
-    } else {
-        clearTimeout(timeout);
-        box.style.background = "#333";
-        box.innerText = "TOO FAST! Restarting...";
-    }
-}
+        function showVips() { document.getElementById('vipArea').style.display = 'block'; notify("Vault Opened!"); }
+        function bhootEffect() { document.body.style.filter = "invert(1)"; setTimeout(() => document.body.style.filter = "none", 200); alert("👻 BHOOT!"); }
+        function selfDestruct() {
+            if(confirm("Overload System?")) {
+                document.body.style.filter = "blur(20px) grayscale(1)";
+                setTimeout(() => { alert("Just kidding! 😆"); document.body.style.filter = "none"; }, 2000);
+            }
+        }
+        function refreshWeather() { notify("Weather Updated."); }
+        window.onload = () => { notify("Welcome to Sakshyam's World!"); };
     </script>
 </body>
 </html>
