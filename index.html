@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakshyam OS | Legend Edition</title>
+    <title>Sakshyam OS | Main Gate</title>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Orbitron:wght@500&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
@@ -11,8 +11,11 @@
         :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.1); --neon-blue: #00f2ff; --neon-pink: #ff00ff; --danger: #ff4444; }
         body { background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('https://images.alphacoders.com/941/941011.jpg') center/cover fixed; color: white; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow-x: hidden; cursor: crosshair; }
         #matrixCanvas { position: fixed; top: 0; left: 0; z-index: -1; display: none; opacity: 0.3; }
+        
+        /* NEPAL FLAG KEPT AS IS */
         .nepal-flag { position: fixed; top: 20px; left: 20px; width: 40px; z-index: 1000; animation: float 3s ease-in-out infinite; filter: drop-shadow(0 0 10px red); }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
         .jadu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 40px; max-width: 1200px; margin: 0 auto; }
         .magic-card { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 25px; padding: 25px; transition: 0.4s; }
         .magic-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 0 20px var(--gold); }
@@ -24,7 +27,7 @@
 <body>
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" class="nepal-flag" alt="Nepal">
     <canvas id="matrixCanvas"></canvas>
-    <div id="toast">?? Achievement Unlocked!</div>
+    <div id="toast">AWARD UNLOCKED</div>
 
     <header style="padding: 50px 20px 20px; text-align: center;">
         <h1 style="font-family: 'Kalam'; font-size: 50px; color: var(--gold); margin: 0;">Sakshyam's Jadu Ghar</h1>
@@ -34,40 +37,40 @@
     <div class="jadu-grid">
         <div class="magic-card" style="border-top: 4px solid var(--gold);">
             <h2 style="font-family: 'Kalam';">System Control</h2>
-            <button class="btn" style="background: #111; color: var(--neon-blue);" onclick="toggleMatrix()">?? MATRIX MODE</button>
-            <button class="btn" style="background: var(--danger); color: white;" onclick="selfDestruct()">?? OVERLOAD SYSTEM</button>
+            <button class="btn" style="background: #111; color: var(--neon-blue);" onclick="toggleMatrix()">MATRIX MODE</button>
+            <button class="btn" style="background: var(--danger); color: white;" onclick="selfDestruct()">OVERLOAD SYSTEM</button>
         </div>
 
         <div class="magic-card">
             <h2 style="color: #00acee; font-family: 'Kalam';">Weather Spell</h2>
-            <div id="temp" style="font-size: 35px; font-weight: bold;">24°C | Clear</div>
+            <div id="temp" style="font-size: 35px; font-weight: bold;">24 C | Clear</div>
             <p style="font-size: 12px;">Banigama, Nepal</p>
         </div>
 
         <div class="magic-card">
             <h2 style="color: #dc143c; font-family: 'Kalam';">Secret Vault</h2>
-            <button class="btn" onclick="document.getElementById('vipArea').style.display='block'">?? OPEN VIP LIST</button>
+            <button class="btn" onclick="document.getElementById('vipArea').style.display='block'">OPEN VIP LIST</button>
             <div id="vipArea" style="display:none; padding: 10px; text-align: center;">
-                <p style="font-size: 13px; color: var(--gold);">sakshyam • soyesh • motka • mikesh</p>
-                <button class="btn" style="background: #dc143c; color: white;" onclick="enterPortal()">?? ENTER SECRET LAB</button>
+                <p style="font-size: 13px; color: var(--gold);">sakshyam / soyesh / motka / mikesh</p>
+                <button class="btn" style="background: #dc143c; color: white;" onclick="enterPortal()">ENTER SECRET LAB</button>
                 <p style="font-size: 11px; color: white; margin-top: 10px; opacity: 0.7;">
-                    "Score 50 points in gaming zone to enter the portal"
+                    Score 50 points in gaming zone to enter the portal
                 </p>
             </div>
         </div>
 
         <div class="magic-card" style="border-top: 4px solid var(--neon-blue);">
-            <h3 style="color: var(--neon-blue); font-family: 'Orbitron';">QR Magic ??</h3>
+            <h3 style="color: var(--neon-blue); font-family: 'Orbitron';">QR Magic</h3>
             <input type="text" id="qr-input" placeholder="Paste link..." style="background:#111; color:white; border:1px solid #444; padding:8px; width:85%; border-radius:10px;">
             <div id="qrcode" style="background:white; padding:10px; margin:10px auto; width:fit-content; border-radius:10px;"></div>
             <button class="btn" onclick="generateQR()">GENERATE</button>
         </div>
 
         <div class="magic-card" style="border-top: 4px solid var(--neon-pink);">
-            <h3 style="color: var(--neon-pink); font-family: 'Orbitron';">Gaming Zone ??</h3>
+            <h3 style="color: var(--neon-pink); font-family: 'Orbitron';">Gaming Zone</h3>
             <p id="scoreDisplay" style="font-size: 20px; font-weight: bold;">Score: 0</p>
             <div id="passReveal" style="color: lime; font-weight: bold; height: 20px; margin-bottom: 5px;"></div>
-            <button class="btn" onclick="addScore()">TAP ATTACK ??</button>
+            <button class="btn" onclick="addScore()">TAP ATTACK</button>
         </div>
 
         <div class="magic-card">
@@ -77,7 +80,7 @@
         </div>
 
         <div class="magic-card" style="grid-column: 1 / -1; border-bottom: 4px solid var(--gold);">
-            <h2 style="color: var(--gold); font-family: 'Kalam';">Founder's Log: The Journey ??</h2>
+            <h2 style="color: var(--gold); font-family: 'Kalam';">Founder's Log: The Journey</h2>
             <p style="font-size: 14px; font-style: italic; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 15px;">
                 "Hello guyz its me sakshyam the host... creating this in the vacation of exam. Building the future from a Windows 7 laptop!"
             </p>
@@ -85,69 +88,54 @@
 
         <div class="magic-card" style="border-left: 4px solid var(--gold);">
             <h2 style="color: var(--gold); font-family: 'Kalam';">Connect with Legend</h2>
-            <p>?? Instagram: @sakshyam.san</p>
-            <button class="btn" onclick="window.open('https://instagram.com/sakshyam.san')">JOIN VIP ??</button>
+            <p>Instagram: @sakshyam.san</p>
+            <button class="btn" onclick="window.open('https://instagram.com/sakshyam.san')">JOIN VIP</button>
         </div>
     </div>
 
     <script>
         setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
-
-        // SECRET PASSWORD LOGIC
         let hasWon = false;
         function enterPortal() {
-            if(!hasWon) {
-                alert("The vault is sealed! You must score 50 points in the Gaming Zone first.");
-                return;
-            }
-            let password = prompt("Enter the Secret Key revealed by the game:");
+            if(!hasWon) { alert("The vault is sealed! Score 50 points first."); return; }
+            let password = prompt("Enter the Secret Key:");
             if (password === "1234") { window.location.href = "jadu.html"; } 
-            else { notify("WRONG KEY!"); }
+            else { notify("WRONG KEY"); }
         }
-
-        // GAME LOGIC WITH PASSWORD REVEAL
         let score = 0;
         function addScore() { 
             score++; 
             document.getElementById('scoreDisplay').innerText = "Score: " + score; 
-            
             if(score === 50) { 
                 hasWon = true;
-                document.getElementById('passReveal').innerText = "?? SECRET KEY: 1234";
-                notify("LEVEL UP: KEY REVEALED!"); 
+                document.getElementById('passReveal').innerText = "KEY: 1234";
+                notify("KEY REVEALED"); 
             }
         }
-
-        // COMMAND PORT LOGIC
         function runCmd() {
             let cmd = document.getElementById('cmdInput').value.toLowerCase();
             if(cmd === "matrix") { toggleMatrix(); }
-            else if(cmd === "hack") { score = 50; addScore(); notify("HACK SUCCESSFUL!"); }
+            else if(cmd === "hack") { score = 50; addScore(); notify("HACK SUCCESSFUL"); }
             else if(cmd === "reset") { location.reload(); }
             else { notify("Invalid Command"); }
         }
-
-        // OTHER FUNCTIONS
         function generateQR() {
             const input = document.getElementById("qr-input"); 
             const container = document.getElementById("qrcode");
             container.innerHTML = ""; 
             new QRCode(container, { text: input.value, width: 128, height: 128 });
-            notify("QR Code Ready!");
+            notify("QR READY");
         }
-
         function selfDestruct() {
             document.body.style.animation = "shake 0.5s infinite";
-            notify("CRITICAL OVERLOAD!");
-            setTimeout(() => { document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:20%; font-family:Orbitron;'>SYSTEM CRASHED</h1>"; }, 3000);
+            notify("SYSTEM OVERLOAD");
+            setTimeout(() => { document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:20%; font-family:Orbitron;'>CRASHED</h1>"; }, 3000);
         }
-
         function notify(msg) { 
             const t = document.getElementById('toast'); 
             t.innerText = msg; t.style.top = "20px"; 
             setTimeout(() => t.style.top = "-100px", 2000); 
         }
-
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
         let matrixInterval;
