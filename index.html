@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +6,12 @@
     <title>Sakshyam OS | Paradise</title>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Orbitron:wght@500&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    
+
     <style>
         :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.1); --neon-blue: #00f2ff; --neon-pink: #ff00ff; --danger: #ff4444; }
         body { background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('https://images.alphacoders.com/941/941011.jpg') center/cover fixed; color: white; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow-x: hidden; cursor: crosshair; }
         #matrixCanvas { position: fixed; top: 0; left: 0; z-index: -1; display: none; opacity: 0.3; }
-        
+
         /* NEPAL FLAG KEPT AS IS */
         .nepal-flag { position: fixed; top: 20px; left: 20px; width: 40px; z-index: 1000; animation: float 3s ease-in-out infinite; filter: drop-shadow(0 0 10px red); }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -38,15 +38,9 @@
         <div class="magic-card" style="border-top: 4px solid var(--gold);">
             <h2 style="font-family: 'Kalam';">System Control</h2>
             <button class="btn" style="background: #111; color: var(--neon-blue);" onclick="toggleMatrix()">MATRIX MODE</button>
+            <button class="btn" style="background: var(--gold); color: black;" onclick="location.href='noble.html'">READ NOBLE</button>
             <button class="btn" style="background: var(--danger); color: white;" onclick="selfDestruct()">OVERLOAD SYSTEM</button>
         </div>
-        <div class="magic-card" style="border-top: 4px solid var(--gold);">
-    <h2 style="font-family: 'Kalam';">System Control</h2>
-    <button class="btn" style="background: #111; color: var(--neon-blue);" onclick="toggleMatrix()">MATRIX MODE</button>
-    <button class="btn" style="background: var(--gold); color: black;" onclick="location.href='noble.html'">READ NOBLE</button>
-    <button class="btn" style="background: var(--danger); color: white;" onclick="selfDestruct()">OVERLOAD SYSTEM</button>
-</div>
-
 
         <div class="magic-card">
             <h2 style="color: #00acee; font-family: 'Kalam';">Weather Spell</h2>
