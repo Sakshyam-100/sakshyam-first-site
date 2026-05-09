@@ -3,164 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakshyam OS | Paradise</title>
+    <title>Sakshyam OS | Neural Paradise</title>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Orbitron:wght@500&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
     <style>
         :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.1); --neon-blue: #00f2ff; --neon-pink: #ff00ff; --danger: #ff4444; }
-        body { background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('https://images.alphacoders.com/941/941011.jpg') center/cover fixed; color: white; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow-x: hidden; cursor: crosshair; }
-        #matrixCanvas { position: fixed; top: 0; left: 0; z-index: -1; display: none; opacity: 0.3; }
+        
+        body { 
+            /* Background dark overlay + bleach.jpg */
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('bleach.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            color: white; 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+        }
 
-        /* NEPAL FLAG KEPT AS IS */
-        .nepal-flag { position: fixed; top: 20px; left: 20px; width: 40px; z-index: 1000; animation: float 3s ease-in-out infinite; filter: drop-shadow(0 0 10px red); }
+        #matrixCanvas { position: fixed; top: 0; left: 0; z-index: -1; display: none; opacity: 0.3; pointer-events: none; }
+
+        .nepal-flag { position: fixed; top: 20px; left: 20px; width: 40px; z-index: 1000; animation: float 3s ease-in-out infinite; }
+        .music-disk { position: fixed; top: 20px; left: 80px; width: 45px; height: 45px; z-index: 1000; background: radial-gradient(circle, #333 20%, #000 100%); border-radius: 50%; border: 2px solid var(--gold); animation: spin 4s linear infinite; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .disk-center { width: 12px; height: 12px; background: var(--gold); border-radius: 50%; }
+
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes shake { 0% { transform: translate(1px, 1px); } 50% { transform: translate(-2px, -2px); } 100% { transform: translate(1px, 1px); } }
 
-        .jadu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 40px; max-width: 1200px; margin: 0 auto; }
+        .jadu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
         .magic-card { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 25px; padding: 25px; transition: 0.4s; }
         .magic-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 0 20px var(--gold); }
-        .btn { background: white; color: black; border: none; padding: 10px 20px; border-radius: 50px; font-family: 'Kalam'; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
-        .btn:hover { background: var(--gold); }
+        /* Original button styles restored */
+        .btn { background: white; color: black; border: none; padding: 12px 20px; border-radius: 50px; font-family: 'Kalam'; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; transition: 0.3s; text-decoration: none; display: block; text-align: center; }
         #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: var(--gold); color: black; padding: 12px 30px; border-radius: 50px; font-weight: bold; transition: 0.5s; z-index: 9999; }
     </style>
 </head>
-<body>
+<body onclick="initAudio()">
+    <audio id="mainAudio" loop><source src="main.mp3" type="audio/mpeg"></audio>
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" class="nepal-flag" alt="Nepal">
+    <div class="music-disk" onclick="toggleMusic()"><div class="disk-center"></div></div>
     <canvas id="matrixCanvas"></canvas>
-    <div id="toast">AWARD UNLOCKED</div>
+    <div id="toast">CORE ONLINE</div>
 
-<header style="padding: 50px 20px 20px; text-align: center;">
-    <h1 style="font-family: 'Kalam'; font-size: 50px; color: var(--gold); margin: 0;">Sakshyam Paradise</h1>
-    <div id="clock" style="font-family: 'Orbitron'; font-size: 30px; opacity: 0.8; color: var(--neon-blue);">00:00:00</div>
-</header>
+    <header style="padding: 50px 20px 20px; text-align: center;">
+        <h1 style="font-family: 'Kalam'; font-size: 50px; color: var(--gold); margin: 0;">Sakshyam Paradise</h1>
+        <div id="clock" style="font-family: 'Orbitron'; font-size: 30px; opacity: 0.8; color: var(--neon-blue);">00:00:00</div>
+    </header>
 
     <div class="jadu-grid">
         <div class="magic-card" style="border-top: 4px solid var(--gold);">
             <h2 style="font-family: 'Kalam';">System Control</h2>
             <button class="btn" style="background: #111; color: var(--neon-blue);" onclick="toggleMatrix()">MATRIX MODE</button>
-            <button class="btn" style="background: var(--gold); color: black;" onclick="location.href='noble.html'">READ NOBLE</button>
             <button class="btn" style="background: var(--danger); color: white;" onclick="selfDestruct()">OVERLOAD SYSTEM</button>
         </div>
 
         <div class="magic-card">
-            <h2 style="color: #00acee; font-family: 'Kalam';">Weather Spell</h2>
-            <div id="temp" style="font-size: 35px; font-weight: bold;">24 C | Clear</div>
-            <p style="font-size: 12px;">Banigama, Nepal</p>
-        </div>
-
-        <div class="magic-card">
-            <h2 style="color: #dc143c; font-family: 'Kalam';">Secret Vault</h2>
-            <button class="btn" onclick="document.getElementById('vipArea').style.display='block'">OPEN VIP LIST</button>
-            <div id="vipArea" style="display:none; padding: 10px; text-align: center;">
-                <p style="font-size: 13px; color: var(--gold);">sakshyam / soyesh / ristika / mikesh</p>
-                <button class="btn" style="background: #dc143c; color: white;" onclick="enterPortal()">ENTER SECRET LAB</button>
-                <p style="font-size: 11px; color: white; margin-top: 10px; opacity: 0.7;">
-                    Score 50 points in gaming zone to enter the portal
-                </p>
-            </div>
-        </div>
-
-        <div class="magic-card" style="border-top: 4px solid var(--neon-blue);">
-            <h3 style="color: var(--neon-blue); font-family: 'Orbitron';">QR Magic</h3>
-            <input type="text" id="qr-input" placeholder="Paste link..." style="background:#111; color:white; border:1px solid #444; padding:8px; width:85%; border-radius:10px;">
-            <div id="qrcode" style="background:white; padding:10px; margin:10px auto; width:fit-content; border-radius:10px;"></div>
-            <button class="btn" onclick="generateQR()">GENERATE</button>
+            <h2 style="color: #00acee; font-family: 'Kalam';">Weather Monitor</h2>
+            <div id="temp" style="font-size: 28px; font-weight: bold;">Loading...</div>
+            <p style="font-size: 12px;">Baniyani, Jhapa</p>
         </div>
 
         <div class="magic-card" style="border-top: 4px solid var(--neon-pink);">
             <h3 style="color: var(--neon-pink); font-family: 'Orbitron';">Gaming Zone</h3>
             <p id="scoreDisplay" style="font-size: 20px; font-weight: bold;">Score: 0</p>
-            <div id="passReveal" style="color: lime; font-weight: bold; height: 20px; margin-bottom: 5px;"></div>
+            <div id="passReveal" style="color: lime; font-weight: bold; height: 20px;"></div>
             <button class="btn" onclick="addScore()">TAP ATTACK</button>
         </div>
 
-        <div class="magic-card">
-            <h3 style="color: var(--gold); font-family: 'Orbitron';">Command Port</h3>
-            <input type="text" id="cmdInput" placeholder="Enter command..." style="background:black; color:lime; width:90%; border:none; padding:10px; font-family:monospace;">
-            <button class="btn" onclick="runCmd()">EXECUTE</button>
+        <div class="magic-card" style="border-top: 4px solid #ff00ff;">
+            <h2 style="color: #ff00ff; font-family: 'Kalam';">Anime Vault</h2>
+            <button class="btn" style="background: #ff00ff; color: white;" onclick="location.href='animelist.html'">OPEN MY LIST</button>
         </div>
 
-        <div class="magic-card" style="grid-column: 1 / -1; border-bottom: 4px solid var(--gold);">
-            <h2 style="color: var(--gold); font-family: 'Kalam';">Founder's Log: The Journey</h2>
-            <p style="font-size: 14px; font-style: italic; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 15px;">
-                "Hello guyz its me sakshyam the host... creating this in the vacation of exam. Building the future from a Windows 7 laptop!"
-            </p>
+        <div class="magic-card" style="border-top: 4px solid var(--gold);">
+            <h2 style="color: var(--gold); font-family: 'Kalam';">Portals</h2>
+            <button class="btn" style="background: #222; color: var(--gold);" onclick="location.href='noble.html'">READ NOBLE</button>
+            <button class="btn" style="background: var(--gold); color: black;" onclick="enterPortal()">ENTER SECRET LAB</button>
         </div>
 
-        <div class="magic-card" style="border-left: 4px solid var(--gold);">
-            <h2 style="color: var(--gold); font-family: 'Kalam';">Connect with Legend</h2>
-            <p>Instagram: @sakshyam.san</p>
-            <button class="btn" onclick="window.open('https://instagram.com/sakshyam.san')">JOIN VIP</button>
+        <div class="magic-card" style="grid-column: 1 / -1; border-left: 5px solid var(--gold);">
+            <h2 style="color: var(--gold); font-family: 'Kalam';">Contact the Legend</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
+                <a href="https://instagram.com/sakshyam.san" target="_blank" class="btn" style="background: #E1306C; color: white; flex: 1; min-width: 200px;">Instagram</a>
+                <a href="mailto:sakshyamghimire525@gamil.com" class="btn" style="background: #111; color: var(--gold); border: 1px solid var(--gold); flex: 1; min-width: 200px;">Email</a>
+            </div>
         </div>
     </div>
 
     <script>
-        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
-        let hasWon = false;
-        function enterPortal() {
-            if(!hasWon) { alert("The vault is sealed! Score 50 points first."); return; }
-            let password = prompt("Enter the Secret Key:");
-            if (password === "1234") { window.location.href = "jadu.html"; } 
-            else { notify("WRONG KEY"); }
+        const audio = document.getElementById('mainAudio');
+        let mInterval;
+        function initAudio() { if(audio.paused) audio.play(); }
+        function toggleMusic() { event.stopPropagation(); (audio.paused) ? audio.play() : audio.pause(); notify("MUSIC UPDATED"); }
+
+        async function getWeather() {
+            try {
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=26.4714&longitude=88.1066&current_weather=true`);
+                const data = await res.json();
+                document.getElementById('temp').innerText = `${data.current_weather.temperature}°C | Jhapa`;
+            } catch (e) { document.getElementById('temp').innerText = "Offline"; }
         }
-        let score = 0;
+        getWeather();
+
+        let score = 0, hasWon = false;
         function addScore() { 
-            score++; 
-            document.getElementById('scoreDisplay').innerText = "Score: " + score; 
-            if(score === 50) { 
-                hasWon = true;
-                document.getElementById('passReveal').innerText = "KEY: 1234";
-                notify("KEY REVEALED"); 
-            }
+            score++; document.getElementById('scoreDisplay').innerText = "Score: " + score; 
+            if(score === 50) { hasWon = true; document.getElementById('passReveal').innerText = "KEY: 1234"; notify("LAB UNLOCKED"); }
         }
-        function runCmd() {
-            let cmd = document.getElementById('cmdInput').value.toLowerCase();
-            if(cmd === "matrix") { toggleMatrix(); }
-            else if(cmd === "hack") { score = 50; addScore(); notify("HACK SUCCESSFUL"); }
-            else if(cmd === "reset") { location.reload(); }
-            else { notify("Invalid Command"); }
+        function enterPortal() {
+            if(!hasWon) return alert("Score 50 first!");
+            if (prompt("Key?") === "1234") location.href = "jadu.html";
         }
-        function generateQR() {
-            const input = document.getElementById("qr-input"); 
-            const container = document.getElementById("qrcode");
-            container.innerHTML = ""; 
-            new QRCode(container, { text: input.value, width: 128, height: 128 });
-            notify("QR READY");
-        }
-        function selfDestruct() {
-            document.body.style.animation = "shake 0.5s infinite";
-            notify("SYSTEM OVERLOAD");
-            setTimeout(() => { document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:20%; font-family:Orbitron;'>CRASHED</h1>"; }, 3000);
-        }
-        function notify(msg) { 
-            const t = document.getElementById('toast'); 
-            t.innerText = msg; t.style.top = "20px"; 
-            setTimeout(() => t.style.top = "-100px", 2000); 
-        }
+
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
-        let matrixInterval;
         function toggleMatrix() {
-            if (canvas.style.display === 'block') { canvas.style.display = 'none'; clearInterval(matrixInterval); }
+            if (canvas.style.display === 'block') { canvas.style.display = 'none'; clearInterval(mInterval); }
             else { canvas.style.display = 'block'; setupMatrix(); }
         }
         function setupMatrix() {
             canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            const letters = "SAKSHYAM10"; const fontSize = 16;
-            const columns = canvas.width / fontSize; const drops = Array(Math.floor(columns)).fill(1);
-            function draw() {
-                ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "#0f0"; ctx.font = fontSize + "px arial";
-                for (let i = 0; i < drops.length; i++) {
-                    const text = letters.charAt(Math.floor(Math.random() * letters.length));
-                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            const drops = Array(Math.floor(canvas.width/16)).fill(1);
+            mInterval = setInterval(() => {
+                ctx.fillStyle = "rgba(0,0,0,0.05)"; ctx.fillRect(0,0,canvas.width,canvas.height);
+                ctx.fillStyle = "#0f0"; drops.forEach((y, i) => {
+                    ctx.fillText("10"[Math.floor(Math.random()*2)], i*16, y*16);
+                    if(y*16 > canvas.height && Math.random() > 0.975) drops[i] = 0;
                     drops[i]++;
-                }
-            }
-            matrixInterval = setInterval(draw, 33);
+                });
+            }, 33);
         }
+
+        function selfDestruct() {
+            document.body.style.animation = "shake 0.1s infinite";
+            notify("CRITICAL OVERLOAD");
+            audio.pause();
+            setTimeout(() => {
+                if (mInterval) clearInterval(mInterval);
+                document.body.style.animation = "none";
+                document.body.style.background = "black";
+                document.body.innerHTML = `
+                    <div style="height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#ff0000; font-family:'Orbitron'; text-align:center;">
+                        <h1 style="font-size:60px;">CORE CRASHED</h1>
+                        <p style="color:#444;">System Integrity Compromised.</p>
+                        <button onclick="location.reload()" style="background:transparent; border:1px solid #333; color:#333; padding:12px 30px; cursor:pointer; margin-top:30px; border-radius:50px; font-family:'Poppins';">REBOOT SYSTEM</button>
+                    </div>
+                `;
+            }, 3000);
+        }
+
+        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
+        function notify(msg) { const t = document.getElementById('toast'); t.innerText = msg; t.style.top = "20px"; setTimeout(() => t.style.top = "-100px", 2000); }
     </script>
-    <style> @keyframes shake { 0% { transform: translate(1px, 1px); } 50% { transform: translate(-2px, -2px); } 100% { transform: translate(1px, 1px); } } </style>
 </body>
 </html>
