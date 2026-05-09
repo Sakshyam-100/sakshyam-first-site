@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakshyam OS | Anime Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #d4af37; --neon-pink: #ff00ff; --glass: rgba(255, 255, 255, 0.1); }
+        body { 
+            background: #0a0a0a; 
+            color: white; 
+            font-family: sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .header { text-align: center; margin-bottom: 30px; }
+        h1 { font-family: 'Kalam'; color: var(--gold); font-size: 35px; margin: 0; }
+        
+        .input-group { width: 100%; max-width: 400px; display: flex; gap: 10px; margin-bottom: 20px; }
+        input { 
+            flex: 1; 
+            background: #1a1a1a; 
+            border: 1px solid var(--glass); 
+            color: white; 
+            padding: 12px; 
+            border-radius: 10px; 
+            outline: none; 
+        }
+        input:focus { border-color: var(--neon-pink); }
+        
+        .add-btn { 
+            background: var(--neon-pink); 
+            border: none; 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 10px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        .list-container { width: 100%; max-width: 400px; }
+        .anime-item { 
+            background: var(--glass); 
+            margin-bottom: 10px; 
+            padding: 15px; 
+            border-radius: 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-left: 4px solid var(--neon-pink);
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+        
+        .delete-btn { color: #ff4444; cursor: pointer; font-weight: bold; font-size: 18px; }
+        .back-btn { margin-top: 30px; color: var(--gold); text-decoration: none; font-family: 'Orbitron'; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>My Anime Vault</h1>
+        <p style="font-size: 10px; opacity: 0.6;">TRACK YOUR LEGENDARY JOURNEY</p>
+    </div>
+
+    <div class="input-group">
+        <input type="text" id="animeInput" placeholder="Anime name (e.g. Blue Lock)...">
+        <button class="add-btn" onclick="addAnime()">ADD</button>
+    </div>
+
+    <div id="animeList" class="list-container">
+        </div>
+
+    <a href="index.html" class="back-btn">< BACK TO PARADISE</a>
+
+    <script>
+        let vault = JSON.parse(localStorage.getItem('sakshyam_anime_list')) || [];
+
+        function saveAndRender() {
+            localStorage.setItem('sakshyam_anime_list', JSON.stringify(vault));
+            const listDiv = document.getElementById('animeList');
+            listDiv.innerHTML = '';
+            
+            vault.forEach((anime, index) => {
+                const item = document.createElement('div');
+                item.className = 'anime-item';
+                item.innerHTML = `
+                    <span>${anime}</span>
+                    <span class="delete-btn" onclick="removeAnime(${index})">×</span>
+                `;
+                listDiv.appendChild(item);
+            });
+        }
+
+        function addAnime() {
+            const input = document.getElementById('animeInput');
+            if (input.value.trim() === '') return;
+            vault.push(input.value.trim());
+            input.value = '';
+            saveAndRender();
+        }
+
+        function removeAnime(index) {
+            vault.splice(index, 1);
+            saveAndRender();
+        }
+
+        // Initial load
+        saveAndRender();
+    </script>
+</body>
+</html>
